@@ -47,24 +47,21 @@ A continuación, vamos a ver los pasos necesarios para hacer el laboratorio.
 
 En el directorio en el que vamos a ubicar el Vagrantfile ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 $ vagrant init -m centos/7
 ```
 
-</div>Esto nos genera el siguiente Vagrantfile minimo:
+Esto nos genera el siguiente Vagrantfile minimo:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
 end
 ```
 
-</div>Lo editamos para añadir más configuración. El Vagrantfile definitivo debería ser muy similar al siguiente:
+Lo editamos para añadir más configuración. El Vagrantfile definitivo debería ser muy similar al siguiente:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
     config.vm.boot_timeout = 120
@@ -88,7 +85,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-</div>A continuación, vamos a explicar para qué sirven las líneas más relevantes de este Vagrantfile:
+A continuación, vamos a explicar para qué sirven las líneas más relevantes de este Vagrantfile:
 
 - En la línea 2 se indica que la máquina virtual que vamos a instalar y configurar es una máquina con sistema operativo CentOS 7.
 - En las líneas 4 y 9 se especifica el nombre de la máquina, tanto a nivel de sistema operativo (salida del comando hostname) como a nivel de provider de virtualización (en este caso VirtualBox).
@@ -101,8 +98,7 @@ end
 
 La estructura de ficheros del proyecto es la siguiente:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 README.md
 Vagrantfile
 provision/roles/gitlab/vars/RedHat.yml
@@ -115,7 +111,7 @@ provision/hosts/all
 provision/install.yml
 ```
 
-</div>A continuación, vamos a ir viendo los distintos ficheros del proyecto.
+A continuación, vamos a ir viendo los distintos ficheros del proyecto.
 
 En el subdirectorio provision tendremos los playbooks Ansible que va a ejecutar Vagrant para la instalación de GitLab CE. Más concretamente, tenemos el fichero install.yml, que es el playbook que a su vez invoca al role que instala y configura GitLab CE.
 
@@ -128,18 +124,16 @@ Además de este fichero, tenemos dos subdirectorios:
 
 En el fichero all, dentro del directorio hosts, se incluye el inventario de máquinas en las que se va a instalar GitLab. En este caso sólo contiene la máquina virtual creada con Vagrant. Por lo tanto, la dirección IP debe coincidir con la dirección IP privada que hayamos definido en el Vagrantfile.
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 [gitlab]
 192.168.107.20
 ```
 
-</div>### Playbook install.yml
+### Playbook install.yml
 
 Como ya hemos comentado, el fichero install.yml contiene el playbook invocado desde Vagrant para la instalación y configuración de GitLab. Este fichero, además de indicar el inventario sobre el que se aplicarán las tareas de automatización, relaciona el tag referenciado en el Vagrantfile con el role que se va a ejecutar. En este caso, tanto el tag como el role se llaman gitlab.
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 ---
 - hosts: all
   
@@ -147,7 +141,7 @@ Como ya hemos comentado, el fichero install.yml contiene el playbook invocado de
     - { role: gitlab, tags: gitlab }
 ```
 
-</div>En este proyecto tenemos un único role, pero podríamos tener varios, en cuyo caso se incluiría una línea por cada role, y el orden de ejecución de los roles sería secuencial.
+En este proyecto tenemos un único role, pero podríamos tener varios, en cuyo caso se incluiría una línea por cada role, y el orden de ejecución de los roles sería secuencial.
 
 El directorio provision/roles/gitlab contiene todo el código del role gitlab. A continuación, vamos a ver los distintos ficheros que contienen este código.
 
@@ -161,21 +155,19 @@ Para probarlo con otro sistema operativo, sólo habría que sustituir la cadena 
 
 Debian.yml
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 ---
 gitlab_repository_installation_script_url: https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.deb.sh
 ```
 
-</div>RedHat.yml
+RedHat.yml
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 ---
 gitlab_repository_installation_script_url: https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.rpm.sh
 ```
 
-</div>Es importante resaltar que en cada fichero, la URL contiene a su vez una variable que hace referencia a la edición de GitLab que vamos a instalar. En este laboratorio vamos a instalar la edición Community Edition.
+Es importante resaltar que en cada fichero, la URL contiene a su vez una variable que hace referencia a la edición de GitLab que vamos a instalar. En este laboratorio vamos a instalar la edición Community Edition.
 
 Para instalar GitLab EE (Enterprise Edition) en lugar de la edición CE, sólo hay que cambiar en el fichero provision/roles/gitlab/defaults/main.yml la línea gitlab\_edition: «gitlab-ce» por gitlab\_edition: «gitlab-ee».
 
@@ -183,8 +175,7 @@ Para instalar GitLab EE (Enterprise Edition) en lugar de la edición CE, sólo h
 
 El directorio provision/roles/gitlab/defaults contiene un fichero main.yml en el que se definen las distintas variables que se van a utilizar en el código del role, como la URL de acceso a GitLab, la edición que se va a instalar, el directorio que contiene los repositorios Git, y otras muchas variables.
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 ---
 # Configuración general
 gitlab_external_url: "http://localhost/"
@@ -241,12 +232,11 @@ gitlab_email_display_name: "Gitlab"
 gitlab_email_reply_to: "gitlab@example.com"
 ```
 
-</div>### Tareas del role
+### Tareas del role
 
 El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el que se detallan las tareas de instalación y configuración de GitLab.
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 ---
 - name: Incluir variables específicas del sistema operativo
   include_vars: "{{ ansible_os_family }}.yml"
@@ -313,7 +303,7 @@ El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el qu
   notify: Reiniciar GitLab
 ```
 
-</div>Aunque el código es bastante explicativo, vamos a ver para que sirven algunas de las líneas de este fichero:
+Aunque el código es bastante explicativo, vamos a ver para que sirven algunas de las líneas de este fichero:
 
 - En la línea 3 se incluyen las variables contenidas en el fichero correspondiente a la familia de sistema operativo en el que se ejecuta el playbook Ansible. Para ello, se hace uso de la variable {{ ansible\_os\_family }} que nos indica la familia del sistema operativo en el que se está ejecutando el playbook. Para CentOS 7 el valor de esta variable es «RedHat», por lo que en este caso se cargan las variables contenidas en el fichero RedHat.yml.
 - De las líneas 5 a la 11 se comprueba si ya existe el fichero de configuración de GitLab y si GitLab ya está instalado.
@@ -329,8 +319,7 @@ A continuación, podéis ver el código del template y el del handler para el re
 
 ### Template gitlab.rb.j2
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 # URL a través de la cual se accederá a GitLab
 external_url "{{ gitlab_external_url }}"
 
@@ -404,10 +393,9 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
 # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md#changing-gitlab-yml-settings
 ```
 
-</div>### Handler
+### Handler
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 ---
 - name: Reiniciar GitLab
   command: gitlab-ctl reconfigure
@@ -415,16 +403,15 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
   failed_when: gitlab_restart.rc != 0
 ```
 
-</div>## Instrucciones
+## Instrucciones
 
 Para crear y arrancar la máquina virtual y lanzar la instalación de GitLab ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```
 $ vagrant up
 ```
 
-</div>Una vez arrancada la máquina virtual e instalado GitLab, abrimos un navegador web y accedemos a http://localhost:8080 para entrar en la consola de administración de GitLab.
+Una vez arrancada la máquina virtual e instalado GitLab, abrimos un navegador web y accedemos a http://localhost:8080 para entrar en la consola de administración de GitLab.
 
 ## Código fuente del laboratorio
 
