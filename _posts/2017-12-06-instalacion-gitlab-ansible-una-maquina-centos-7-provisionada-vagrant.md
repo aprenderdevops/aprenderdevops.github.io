@@ -175,6 +175,7 @@ Para instalar GitLab EE (Enterprise Edition) en lugar de la edición CE, sólo h
 
 El directorio provision/roles/gitlab/defaults contiene un fichero main.yml en el que se definen las distintas variables que se van a utilizar en el código del role, como la URL de acceso a GitLab, la edición que se va a instalar, el directorio que contiene los repositorios Git, y otras muchas variables.
 
+{% raw %}
 ```
 ---
 # Configuración general
@@ -231,11 +232,13 @@ gitlab_email_from: "gitlab@example.com"
 gitlab_email_display_name: "Gitlab"
 gitlab_email_reply_to: "gitlab@example.com"
 ```
+{% endraw %}
 
 ### Tareas del role
 
 El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el que se detallan las tareas de instalación y configuración de GitLab.
 
+{% raw %}
 ```
 ---
 - name: Incluir variables específicas del sistema operativo
@@ -302,6 +305,7 @@ El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el qu
     mode: 0600
   notify: Reiniciar GitLab
 ```
+{% endraw %}
 
 Aunque el código es bastante explicativo, vamos a ver para que sirven algunas de las líneas de este fichero:
 
@@ -319,6 +323,7 @@ A continuación, podéis ver el código del template y el del handler para el re
 
 ### Template gitlab.rb.j2
 
+{% raw %}
 ```
 # URL a través de la cual se accederá a GitLab
 external_url "{{ gitlab_external_url }}"
@@ -392,6 +397,7 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
 # Para cambiar otras configuraciones, consultar:
 # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md#changing-gitlab-yml-settings
 ```
+{% endraw %}
 
 ### Handler
 
