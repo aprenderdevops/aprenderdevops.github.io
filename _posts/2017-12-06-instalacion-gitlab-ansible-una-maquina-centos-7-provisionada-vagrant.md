@@ -61,7 +61,7 @@ end
 
 Lo editamos para añadir más configuración. El Vagrantfile definitivo debería ser muy similar al siguiente:
 
-```ruby
+{% highlight ruby linenos %}
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
     config.vm.boot_timeout = 120
@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "private_network", ip: "192.168.107.20"
     config.vm.network "forwarded_port", host: 8080, guest: 80, autocorrect: true
 end
-```
+{% endhighlight %}
 
 A continuación, vamos a explicar para qué sirven las líneas más relevantes de este Vagrantfile:
 
@@ -238,8 +238,7 @@ gitlab_email_reply_to: "gitlab@example.com"
 
 El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el que se detallan las tareas de instalación y configuración de GitLab.
 
-{% raw %}
-```yaml
+{% highlight yaml linenos %}{% raw %}
 ---
 - name: Incluir variables específicas del sistema operativo
   include_vars: "{{ ansible_os_family }}.yml"
@@ -304,8 +303,7 @@ El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el qu
     group: root
     mode: 0600
   notify: Reiniciar GitLab
-```
-{% endraw %}
+{% endraw %}{% endhighlight %}
 
 Aunque el código es bastante explicativo, vamos a ver para que sirven algunas de las líneas de este fichero:
 
