@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=181'
 permalink: /instalacion-de-nexus-3-en-centos-7/
-image: /wp-content/uploads/2018/01/instalacion-nexus.png
+image: /assets/images/2018/01/instalacion-nexus.png
 categories:
     - 'Integración y entrega continua'
 tags:
@@ -174,7 +174,7 @@ Este comando iniciará el servicio nexus en el puerto 8081.
 
 Para entrar en la consola de Nexus, abrimos un navegador web y accedemos a http://localhost:8081.
 
-[![Consola Nexus Repository OSS 3](http://aprenderdevops.com/wp-content/uploads/2018/01/consola-nexus.png)](http://aprenderdevops.com/wp-content/uploads/2018/01/consola-nexus.png)
+[![Consola Nexus Repository OSS 3](/assets/images/2018/01/consola-nexus.png)](/assets/images/2018/01/consola-nexus.png)
 {: .aligncenter}
 
 Para iniciar sesión en la consola, lo que nos permitirá administrar Nexus 3, pulsamos en «Sign in» en la esquina superior derecha de la pantalla. Podemos utilizar el usuario y la contraseña predeterminados, que son admin y admin123 respectivamente.

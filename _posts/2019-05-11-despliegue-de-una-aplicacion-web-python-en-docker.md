@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=419'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker/
-image: /wp-content/uploads/2019/04/python-docker.png
+image: /assets/images/2019/04/python-docker.png
 categories:
     - Contenedores
 tags:

@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=292'
 permalink: /introduccion-a-kubernetes/
-image: /wp-content/uploads/2018/07/kubernetes.png
+image: /assets/images/2018/07/kubernetes.png
 categories:
     - Contenedores
 tags:

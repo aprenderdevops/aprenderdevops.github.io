@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=109'
 permalink: /instalacion-de-jenkins-con-docker/
-image: /wp-content/uploads/2017/12/jenkins-docker.png
+image: /assets/images/2017/12/jenkins-docker.png
 categories:
     - Contenedores
     - 'Integración y entrega continua'

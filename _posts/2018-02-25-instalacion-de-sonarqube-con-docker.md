@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=262'
 permalink: /instalacion-de-sonarqube-con-docker/
-image: /wp-content/uploads/2018/02/sonarqube-docker.png
+image: /assets/images/2018/02/sonarqube-docker.png
 categories:
     - 'Aseguramiento de la calidad'
     - Contenedores
@@ -115,7 +115,7 @@ Una vez arrancados los contenedores, abrimos un navegador web y accedemos a http
 
 El usuario y la contraseña predeterminados son admin y admin respectivamente. La primera ver que accedamos nos pedirá que cambiemos la contraseña.
 
-[![Instalación de SonarQube con Docker](https://aprenderdevops.com/wp-content/uploads/2021/10/consola-sonarqube-1024x585.png)](https://aprenderdevops.com/wp-content/uploads/2021/10/consola-sonarqube.png)
+[![Instalación de SonarQube con Docker](/assets/images/2021/10/consola-sonarqube-1024x585.png)](/assets/images/2021/10/consola-sonarqube.png)
 {: .aligncenter}
 
 ## Código fuente del laboratorio

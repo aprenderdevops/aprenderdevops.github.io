@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'https://aprenderdevops.com/?p=574'
 permalink: /instalacion-del-stack-elastic-con-docker/
-image: /wp-content/uploads/2021/11/elastic-docker-1.png
+image: /assets/images/2021/11/elastic-docker-1.png
 categories:
     - Contenedores
 tags:
@@ -171,7 +171,7 @@ Una vez arrancados los tres contenedores del stack Elastic, para comprobar si el
 
 Abrimos un navegador y accedemos a http://localhost:9200. Deberíamos ver una salida similar a la mostrada en la siguiente captura de pantalla.
 
-[![Instalación del stack Elastic con Docker](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png)](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png)
+[![Instalación del stack Elastic con Docker](/assets/images/2021/11/elastic-docker-2.png)](/assets/images/2021/11/elastic-docker-2.png)
 {: .aligncenter}
 
 ### Logstash
@@ -279,7 +279,7 @@ La salida de este comando deberá mostrar el primer evento de tipo heartbeat gen
 
 Para comprobar el correcto funcionamiento de Kibana, abrimos un navegador y accedemos a http://localhost:5601. Esto debería abrir la consola de Kibana, tal y como se muestra en la siguiente captura de pantalla.
 
-[![Instalación del stack Elastic con Docker](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png)](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png)
+[![Instalación del stack Elastic con Docker](/assets/images/2021/11/elastic-docker-3-1024x788.png)](/assets/images/2021/11/elastic-docker-3.png)
 {: .aligncenter}
 
 ## Código fuente del laboratorio

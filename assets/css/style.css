@@ -2058,7 +2058,7 @@ Ajustes propios para la migración a Jekyll
 /* En producción estas dos reglas vivían en un <style> de la página, no en style.css */
 
 .site-title a {
-	background: url(/wp-content/uploads/2017/10/aprenderDevOps360x140.png) no-repeat;
+	background: url(/assets/images/2017/10/aprenderDevOps360x140.png) no-repeat;
 }
 
 body.custom-background {

@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=331'
 permalink: /tipos-de-pruebas-entrega-continua/
-image: /wp-content/uploads/2018/07/tipos-de-pruebas-entrega-continua.png
+image: /assets/images/2018/07/tipos-de-pruebas-entrega-continua.png
 categories:
     - 'Aseguramiento de la calidad'
     - 'Integración y entrega continua'

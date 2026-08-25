@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'https://aprenderdevops.com/?p=816'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker-con-nginx-como-proxy-inverso-y-balanceador-de-carga/
-image: /wp-content/uploads/2023/03/python-docker-nginx-1.png
+image: /assets/images/2023/03/python-docker-nginx-1.png
 categories:
     - Contenedores
 tags:
@@ -29,7 +29,7 @@ En lugar de tener un solo servidor que maneje todas las peticiones, un balancead
 
 En este laboratorio levantaremos un contenedor con la [imagen oficial de NGINX](https://hub.docker.com/_/nginx) que balanceará el tráfico entre dos contenedores [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
-![](https://aprenderdevops.com/wp-content/uploads/2023/03/python-docker-nginx-2.png)
+![](/assets/images/2023/03/python-docker-nginx-2.png)
 {: .aligncenter}
 
 ## Aplicación web Python “Hola mundo”

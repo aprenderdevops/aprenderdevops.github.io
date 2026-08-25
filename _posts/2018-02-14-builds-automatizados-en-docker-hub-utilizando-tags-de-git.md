@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=228'
 permalink: /builds-automatizados-en-docker-hub-utilizando-tags-de-git/
-image: /wp-content/uploads/2017/12/builds-dockerhub.png
+image: /assets/images/2017/12/builds-dockerhub.png
 categories:
     - Contenedores
     - 'Integración y entrega continua'
@@ -46,12 +46,12 @@ Lo primero que tenemos que hacer es logarnos en Docker Hub y acceder a la config
 
 Una vez en la pantalla Build Settings nos aparecerá una configuración similar a la de la siguiente pantalla.
 
-[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-1-1024x639.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-1.png)
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-1-1024x639.png)](/assets/images/2018/02/builds-dockerhub-tags-1.png)
 {: .aligncenter}
 
 En esta configuración, si previamente ya habíamos configurado los builds automatizados, tendremos una línea para la rama master y otra línea para cualquier rama distinta de la rama master. Lo que tenemos que hacer ahora es pulsar en el símbolo más de color verde y añadir una línea de tipo Tag. Para esta nueva línea podemos dejar los valores por defecto. De esta forma, cualquier tag creado en el repositorio GitHub desencadenará un build cuya imagen Docker resultante será etiquetada con el mismo tag que se ha creado en GitHub.
 
-[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-2-1024x699.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-2.png)
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-2-1024x699.png)](/assets/images/2018/02/builds-dockerhub-tags-2.png)
 {: .aligncenter}
 
 ## Actualización del código en GitHub y etiquetado con un tag
@@ -137,17 +137,17 @@ To https://github.com/aprenderdevops/docker-jenkins.git
 
 En el repositorio de GitHub tendremos una nueva release etiquetada con el tag 1.5.
 
-[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-3-1024x456.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-3.png)
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-3-1024x456.png)](/assets/images/2018/02/builds-dockerhub-tags-3.png)
 {: .aligncenter}
 
 Estos cambios en GitHub desencadenarán dos builds en Docker Hub, uno etiquetado como latest y otro como 1.5.
 
-[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-4-1024x590.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-4.png)
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-4-1024x590.png)](/assets/images/2018/02/builds-dockerhub-tags-4.png)
 {: .aligncenter}
 
 Pasados unos minutos ambas imágenes estarán disponibles en Docker Hub y podremos usarlas para ejecutar Jenkins con el plugin Blue Ocean.
 
-[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-5-1024x390.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-5.png)
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-5-1024x390.png)](/assets/images/2018/02/builds-dockerhub-tags-5.png)
 {: .aligncenter}
 
 ### Arranque del contenedor con la nueva imagen Docker
@@ -176,7 +176,7 @@ $ docker exec -it dockerjenkins_master_1 cat /var/jenkins_home/secrets/initialAd
 
 Si todo ha ido bien, en la parte izquierda de la consola de Jenkins se mostrará el icono de acceso a la interfaz Blue Ocean.
 
-[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-6-1024x625.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-6.png)
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-6-1024x625.png)](/assets/images/2018/02/builds-dockerhub-tags-6.png)
 {: .aligncenter}
 
 ## Código fuente del laboratorio

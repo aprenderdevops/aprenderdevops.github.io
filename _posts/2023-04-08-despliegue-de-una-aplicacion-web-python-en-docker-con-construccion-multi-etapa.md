@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'https://aprenderdevops.com/?p=909'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker-con-construccion-multi-etapa/
-image: /wp-content/uploads/2019/04/python-docker.png
+image: /assets/images/2019/04/python-docker.png
 categories:
     - Contenedores
 tags:
