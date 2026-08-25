@@ -2094,6 +2094,11 @@ body.custom-background {
 	width: 100%;
 }
 
+.entry-content .entry-image {
+	display: block;
+	margin: 0 auto 40px;
+}
+
 .entry-content pre {
 	overflow-x: auto;
 	background-color: #222;
