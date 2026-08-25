@@ -5,6 +5,7 @@ date: '2017-10-07T23:09:07+02:00'
 author: Arturo
 layout: page
 guid: 'http://aprenderdevops.com/?page_id=27'
+permalink: /acerca-de/
 ---
 
 Soy Arturo Fernández y este es mi blog [aprenderDevOps](https://aprenderdevops.com). ¡Bienvenido!

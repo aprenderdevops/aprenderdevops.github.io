@@ -1,0 +1,23 @@
+# Slugs fijados a mano (detalle 1 del plan): ni el enlace real de categorias.md
+# ni el filtro slugify de Liquid producen estos slugs de forma automática.
+- nombre: 'Aseguramiento de la calidad'
+  slug: aseguramiento-de-la-calidad
+  descripcion: 'El aseguramiento de la calidad del software debe ser una de las prácticas esenciales dentro de las organizaciones TI de alto rendimiento que adoptan un enfoque DevOps.'
+- nombre: Cloud
+  slug: cloud
+  descripcion: 'La computación en la nube junto con la adopción de DevOps permiten a las compañías alcanzar sus objetivos de transformación digital.'
+- nombre: Contenedores
+  slug: contenedores
+  descripcion: 'Los contenedores están aquí para quedarse. La tecnología de contenedores permite desarrollar aplicaciones portables y autocontenidas, con todas sus dependencias incluidas, de una forma eficiente.'
+- nombre: GitOps
+  slug: gitops
+  descripcion: 'GitOps es una metodología de operación de infraestructura y aplicaciones que se basa en el uso de repositorios Git y en la automatización continua para gestionar y orquestar cambios en los sistemas y aplicaciones de forma consistente, segura y auditable.'
+- nombre: 'Infraestructura como código'
+  slug: infraestructura-como-codigo
+  descripcion: 'La infraestructura como código consiste en la automatización mediante código de las actividades de provisión de infraestructura.'
+- nombre: 'Integración y entrega continua'
+  slug: integracion-entrega-continua
+  descripcion: 'La integración continua es una forma de trabajar dentro del desarrollo de software que consiste en hacer integraciones automáticas de un proyecto, incluyendo la compilación y ejecución de pruebas, lo más a menudo posible.'
+- nombre: Otros
+  slug: otros
+  descripcion: 'En esta categoría se incluyen todas las entradas del blog que no coinciden con ninguna de las categorías anteriores.'

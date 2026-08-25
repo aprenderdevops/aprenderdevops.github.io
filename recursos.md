@@ -5,6 +5,7 @@ date: '2017-10-07T23:16:57+02:00'
 author: Arturo
 layout: page
 guid: 'http://aprenderdevops.com/?page_id=45'
+permalink: /recursos/
 ---
 
 [GitHub](https://github.com/aprenderdevops). Podéis descargar o clonar de GitHub el código fuente completo de los laboratorios que explico en las entradas del blog.
