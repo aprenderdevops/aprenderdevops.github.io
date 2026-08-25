@@ -47,13 +47,13 @@ A continuación, vamos a ver los pasos necesarios para hacer el laboratorio.
 
 En el directorio en el que vamos a ubicar el Vagrantfile ejecutamos el siguiente comando:
 
-```
+```console
 $ vagrant init -m centos/7
 ```
 
 Esto nos genera el siguiente Vagrantfile minimo:
 
-```
+```ruby
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
 end
@@ -61,7 +61,7 @@ end
 
 Lo editamos para añadir más configuración. El Vagrantfile definitivo debería ser muy similar al siguiente:
 
-```
+```ruby
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
     config.vm.boot_timeout = 120
@@ -98,7 +98,7 @@ A continuación, vamos a explicar para qué sirven las líneas más relevantes d
 
 La estructura de ficheros del proyecto es la siguiente:
 
-```
+```text
 README.md
 Vagrantfile
 provision/roles/gitlab/vars/RedHat.yml
@@ -124,7 +124,7 @@ Además de este fichero, tenemos dos subdirectorios:
 
 En el fichero all, dentro del directorio hosts, se incluye el inventario de máquinas en las que se va a instalar GitLab. En este caso sólo contiene la máquina virtual creada con Vagrant. Por lo tanto, la dirección IP debe coincidir con la dirección IP privada que hayamos definido en el Vagrantfile.
 
-```
+```text
 [gitlab]
 192.168.107.20
 ```
@@ -133,7 +133,7 @@ En el fichero all, dentro del directorio hosts, se incluye el inventario de máq
 
 Como ya hemos comentado, el fichero install.yml contiene el playbook invocado desde Vagrant para la instalación y configuración de GitLab. Este fichero, además de indicar el inventario sobre el que se aplicarán las tareas de automatización, relaciona el tag referenciado en el Vagrantfile con el role que se va a ejecutar. En este caso, tanto el tag como el role se llaman gitlab.
 
-```
+```yaml
 ---
 - hosts: all
   
@@ -155,14 +155,14 @@ Para probarlo con otro sistema operativo, sólo habría que sustituir la cadena 
 
 Debian.yml
 
-```
+```yaml
 ---
 gitlab_repository_installation_script_url: https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.deb.sh
 ```
 
 RedHat.yml
 
-```
+```yaml
 ---
 gitlab_repository_installation_script_url: https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.rpm.sh
 ```
@@ -176,7 +176,7 @@ Para instalar GitLab EE (Enterprise Edition) en lugar de la edición CE, sólo h
 El directorio provision/roles/gitlab/defaults contiene un fichero main.yml en el que se definen las distintas variables que se van a utilizar en el código del role, como la URL de acceso a GitLab, la edición que se va a instalar, el directorio que contiene los repositorios Git, y otras muchas variables.
 
 {% raw %}
-```
+```yaml
 ---
 # Configuración general
 gitlab_external_url: "http://localhost/"
@@ -239,7 +239,7 @@ gitlab_email_reply_to: "gitlab@example.com"
 El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el que se detallan las tareas de instalación y configuración de GitLab.
 
 {% raw %}
-```
+```yaml
 ---
 - name: Incluir variables específicas del sistema operativo
   include_vars: "{{ ansible_os_family }}.yml"
@@ -324,7 +324,7 @@ A continuación, podéis ver el código del template y el del handler para el re
 ### Template gitlab.rb.j2
 
 {% raw %}
-```
+```ruby
 # URL a través de la cual se accederá a GitLab
 external_url "{{ gitlab_external_url }}"
 
@@ -401,7 +401,7 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
 
 ### Handler
 
-```
+```yaml
 ---
 - name: Reiniciar GitLab
   command: gitlab-ctl reconfigure
@@ -413,7 +413,7 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
 
 Para crear y arrancar la máquina virtual y lanzar la instalación de GitLab ejecutamos el siguiente comando:
 
-```
+```console
 $ vagrant up
 ```
 
