@@ -43,7 +43,7 @@ Los slugs de categoría **no se derivan** del nombre (el filtro `slugify` de Liq
 
 El sitio recrea el tema Generate Pro con layouts e includes propios, sin plugins de Jekyll fuera de la lista permitida por GitHub Pages:
 
-- `_layouts/default.html` — esqueleto común (site-container / header / nav / site-inner / footer); `home.html`, `post.html`, `page.html` y `category.html` heredan de él.
+- `_layouts/default.html` — esqueleto común (site-container / header / nav / site-inner / footer); `home.html`, `post.html`, `page.html`, `category.html` y `tag.html` heredan de él.
 - `_includes/` — `head.html`, `site-header.html`, `nav-primary.html`, `nav-secondary.html`, `entry.html` (tarjeta reutilizada por `home.html` y `category.html`), `entry-header.html`, `entry-footer.html`, `fecha.html` (formatea fechas en español, ya que Liquid no las localiza).
 - `_data/menu.yml` y `_data/categorias.yml` — estructura del menú y mapeo nombre→slug→descripción de categorías.
 - `category/<slug>.md` (×7) — páginas de archivo de categoría escritas a mano, con `category_name` en el front matter; `jekyll-archives` no está en la lista de plugins de GitHub Pages.
@@ -51,7 +51,30 @@ El sitio recrea el tema Generate Pro con layouts e includes propios, sin plugins
 - `assets/css/style.css` — el `style.css` de Generate Pro (GPL-2.0+) copiado tal cual, más un bloque de reglas propias al final del fichero: el fondo del body, el logo, `.full-width-content .content` (el único ajuste de anchura, pensado como mando para ampliar la columna de lectura más adelante), el recorte `aspect-ratio`/`object-fit` de las imágenes destacadas (no existen en el repo las variantes `-700x300` que WordPress generaba) y el icono de hamburguesa / flechas de submenú en CSS puro. El tema original apoya esos iconos en la fuente `dashicons` de WordPress, que no está en el repo — cualquier icono nuevo del tema debe evitarla igual.
 - `assets/js/responsive-menu.js` — reescritura sin jQuery del menú responsive de Genesis.
 - El body siempre lleva `class="custom-background custom-header header-image full-width-content"`: la clase `header-image` es la que convierte el título en el logo (crea la caja que aloja la imagen de fondo del `.site-title` y esconde el texto), no un detalle cosmético.
-- No se migraron buscador, comentarios, widgets de sidebar (incluida la suscripción por correo), formulario de contacto ni iconos sociales — eran plugins de WordPress sin equivalente sencillo en Jekyll. Las etiquetas se renderizan como texto plano, sin páginas `/tag/<slug>/`.
+- No se migraron buscador, comentarios, widgets de sidebar (incluida la suscripción por correo), formulario de contacto ni iconos sociales — eran plugins de WordPress sin equivalente sencillo en Jekyll.
+- Las etiquetas sí están enlazadas, a `/tag/<slug>/` — ver la sección siguiente.
+
+## Páginas de etiqueta (tag/)
+
+A diferencia de las categorías (una taxonomía fija de 7, con slugs fijados a mano en `_data/categorias.yml`), las etiquetas son libres y crecen con cada entrada nueva — hoy hay 25 distintas. Por eso no se mantienen a mano: `scripts/generar_tags.rb` las genera a partir de `_posts/*.md`.
+
+- **`scripts/generar_tags.rb`** lee las `tags:` de todas las entradas y sincroniza el directorio `tag/`: crea un `tag/<slug>.md` (con `layout: tag`, `title` y `tag_name`) por cada etiqueta que no lo tenga, y borra los de etiquetas que ya no usa ninguna entrada. El slug lo calcula con `Jekyll::Utils.slugify(etiqueta, mode: 'latin')`. `_includes/entry-footer.html` enlaza cada etiqueta con el filtro Liquid equivalente, `{{ etiqueta | slugify: 'latin' }}` — al ser el mismo método por debajo, el slug que genera el script y el que enlaza la plantilla siempre coinciden sin necesidad de un mapeo a mano como el de categorías. `_layouts/tag.html` es el mismo patrón que `category.html`, indexando `site.tags[page.tag_name]` en vez de `site.categories[...]`.
+- **Cuándo ejecutarlo:** después de añadir o editar los `tags:` de cualquier entrada, antes de hacer commit:
+
+  ```bash
+  bundle exec ruby scripts/generar_tags.rb
+  ```
+
+  Revisa el diff de `tag/` (páginas nuevas o borradas) y commitéalo junto con la entrada.
+
+- **Hook de pre-commit (opcional, ver `hooks/pre-commit`):** automatiza el paso anterior. git no versiona `.git/hooks/`, así que el hook vive en el repo como un fichero más y cada clon debe activarlo una vez:
+
+  ```bash
+  git config core.hooksPath hooks
+  ```
+
+  A partir de ahí, cualquier commit que toque `_posts/` regenera `tag/` y añade los cambios al propio commit automáticamente. Es solo una comodidad local — si no está activado (por ejemplo, en un clon donde aún no se ha ejecutado ese comando), nada se rompe silenciosamente porque hay una verificación en CI que lo detecta.
+- **Verificación en CI:** `.github/workflows/jekyll-gh-pages.yml` vuelve a ejecutar `scripts/generar_tags.rb` en cada push a `main`, antes de construir el sitio, y falla el despliegue si eso cambia algo en `tag/` — es decir, si el commit se hizo sin ejecutar el script (o sin el hook activado). El workflow nunca hace commit ni push de vuelta al repo: solo bloquea el despliegue con un mensaje indicando qué ejecutar en local. Por eso el job de `build` ahora también configura Ruby con `ruby/setup-ruby@v1` y usa `bundle exec` (reutilizando el `Gemfile` del repo, solo para este paso — el build real del sitio lo sigue haciendo `actions/jekyll-build-pages`, que no lo usa).
 
 ## Convenciones al añadir/editar entradas
 
