@@ -4,16 +4,23 @@ Este fichero proporciona guía a Claude Code (claude.ai/code) al trabajar con c�
 
 ## Qué es esto
 
-El código fuente de [aprenderDevOps](https://aprenderdevops.com), un blog en español sobre DevOps (Docker, Ansible, Kubernetes, CI/CD, infraestructura como código, etc.), alojado en GitHub Pages. En este repositorio no hay herramientas de build locales (no hay `Gemfile`, ni `_layouts`/`_includes`/`_sass`, ni tema declarado en `_config.yml`) — el sitio depende por completo del entorno Jekyll/tema preinstalado de GitHub Pages a través del workflow de despliegue.
+El código fuente de [aprenderDevOps](https://aprenderdevops.com), un blog en español sobre DevOps (Docker, Ansible, Kubernetes, CI/CD, infraestructura como código, etc.), alojado en GitHub Pages. En este repositorio no hay `_layouts`/`_includes`/`_sass` propios ni tema declarado en `_config.yml` — el sitio depende por completo del tema preinstalado de GitHub Pages a través del workflow de despliegue. El `Gemfile` del repo es solo para previsualizar en local; el despliegue real no lo usa (ver más abajo).
 
 ## Build / despliegue
 
-No hay una instalación local de Jekyll que ejecutar o probar en este repo. La publicación ocurre exclusivamente mediante GitHub Actions:
+La publicación ocurre exclusivamente mediante GitHub Actions:
 
-- `.github/workflows/jekyll-gh-pages.yml` construye el sitio con `actions/jekyll-build-pages` y lo despliega con `actions/deploy-pages` en cada push a `main`.
+- `.github/workflows/jekyll-gh-pages.yml` construye el sitio con `actions/jekyll-build-pages` y lo despliega con `actions/deploy-pages` en cada push a `main`. Esta acción trae su propio entorno `github-pages` preinstalado — **no usa el `Gemfile` del repo ni Bundler**.
 - Hacer push a `main` **es** el despliegue. No hay rama de staging ni paso de previsualización — conviene verificar los cambios (front matter, permalinks, sintaxis Liquid) antes de hacer push.
 
-Si necesitas comprobar que un post se renderiza correctamente antes de hacer push, la única forma es ejecutar Jekyll en local con las versiones que GitHub Pages preinstala (no hay `Gemfile.lock` fijado en este repo, así que hay que igualar las versiones actuales del gem `github-pages`/Jekyll) — no existe ningún script en el repo para esto.
+Para comprobar que un post se renderiza correctamente antes de hacer push, usa el `Gemfile` del repo (fija el gem `github-pages`, igualando la versión de Jekyll y plugins que usa GitHub Pages en producción):
+
+```bash
+bundle install
+bundle exec jekyll serve --livereload
+```
+
+y abre `http://localhost:4000`. Revisa de vez en cuando que `Gemfile.lock` siga igualando la versión de `github-pages` que usa producción (`bundle update github-pages`), ya que GitHub Pages actualiza esa versión de forma independiente a este repo.
 
 ## Estructura del contenido
 
