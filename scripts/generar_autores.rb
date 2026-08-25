@@ -48,7 +48,7 @@ esperados = autores.to_h { |autor| [Jekyll::Utils.slugify(autor, mode: 'latin'),
 borradas = 0
 Dir.glob(File.join(AUTHORS_DIR, '*.md')).each do |fichero|
   slug = File.basename(fichero, '.md')
-  next if slug.include?('-page') || esperados.key?(slug)
+  next if slug.match?(/-page\d+\z/) || esperados.key?(slug)
 
   File.delete(fichero)
   borradas += 1

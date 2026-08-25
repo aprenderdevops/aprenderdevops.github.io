@@ -51,7 +51,7 @@ esperados = etiquetas.to_h { |etiqueta| [Jekyll::Utils.slugify(etiqueta, mode: '
 borradas = 0
 Dir.glob(File.join(TAGS_DIR, '*.md')).each do |fichero|
   slug = File.basename(fichero, '.md')
-  next if esperados.key?(slug)
+  next if slug.match?(/-page\d+\z/) || esperados.key?(slug)
 
   File.delete(fichero)
   borradas += 1
