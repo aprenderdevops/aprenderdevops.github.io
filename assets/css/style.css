@@ -2099,6 +2099,17 @@ body.custom-background {
 	margin: 0 auto 40px;
 }
 
+.entry-content > table {
+	table-layout: fixed;
+}
+
+.entry-content > table th,
+.entry-content > table td {
+	border: 1px solid #222;
+	padding: 0.5em;
+	vertical-align: middle;
+}
+
 .entry-content pre {
 	overflow-x: auto;
 	background-color: #222;
