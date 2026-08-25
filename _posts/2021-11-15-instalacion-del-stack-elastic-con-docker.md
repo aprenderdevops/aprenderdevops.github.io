@@ -171,9 +171,9 @@ Una vez arrancados los tres contenedores del stack Elastic, para comprobar si el
 
 Abrimos un navegador y accedemos a http://localhost:9200. Deberíamos ver una salida similar a la mostrada en la siguiente captura de pantalla.
 
-<figure class="wp-block-image size-full"><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png" alt="Instalación del stack Elastic con Docker"></a></figure>### Logstash
+<figure><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png" alt="Instalación del stack Elastic con Docker"></a></figure>### Logstash
 
-A continuación, se muestra el fichero <meta charset="utf-8"></meta>[logstash/pipeline/logstash.conf](https://github.com/aprenderdevops/docker-elastic/blob/main/logstash/pipeline/logstash.conf), que contiene la <meta charset="utf-8"></meta>configuración del pipeline que <meta charset="utf-8"></meta>nos va a permitir comprobar el funcionamiento <meta charset="utf-8"></meta>de Logstash.
+A continuación, se muestra el fichero [logstash/pipeline/logstash.conf](https://github.com/aprenderdevops/docker-elastic/blob/main/logstash/pipeline/logstash.conf), que contiene la configuración del pipeline que nos va a permitir comprobar el funcionamiento de Logstash.
 
 <div class="wp-block-syntaxhighlighter-code" markdown="1">```ruby
 input {
@@ -201,7 +201,7 @@ output {
 
 En este ejemplo no hemos incluido ningún [filter](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html), por lo que, con los eventos generados no se va a realizar ningún tipo de procesamiento o transformación.
 
-En la sección output se configura la salida de los eventos para su envío al índice <meta charset="utf-8"></meta>heartbeat de Elasticsearch cuando estos hayan sido generados por el plugin heartbeat. También se envían todos los eventos por la salida estándar mediante el [plugin stdout](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html) utilizando el formato definido por el [códec rubydebug](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-rubydebug.html).
+En la sección output se configura la salida de los eventos para su envío al índice heartbeat de Elasticsearch cuando estos hayan sido generados por el plugin heartbeat. También se envían todos los eventos por la salida estándar mediante el [plugin stdout](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html) utilizando el formato definido por el [códec rubydebug](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-rubydebug.html).
 
 Para comprobar que los eventos de tipo heartbeat se están generando cada 5 segundos y se están enviando a la salida estándar, se puede ejecutar el siguiente comando:
 
@@ -276,6 +276,6 @@ $ curl -XGET "http://localhost:9200/heartbeat/_search?pretty=true" -H 'Content-T
 
 Para comprobar el correcto funcionamiento de Kibana, abrimos un navegador y accedemos a http://localhost:5601. Esto debería abrir la consola de Kibana, tal y como se muestra en la siguiente captura de pantalla.
 
-<figure class="wp-block-image size-large"><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png" alt="Instalación del stack Elastic con Docker"></a></figure>## Código fuente del laboratorio
+<figure><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png" alt="Instalación del stack Elastic con Docker"></a></figure>## Código fuente del laboratorio
 
 Podéis descargar o clonar el código fuente completo de este laboratorio de GitHub de <https://github.com/aprenderdevops/docker-elastic>.

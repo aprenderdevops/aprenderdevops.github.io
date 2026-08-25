@@ -29,7 +29,7 @@ En lugar de tener un solo servidor que maneje todas las peticiones, un balancead
 
 En este laboratorio levantaremos un contenedor con la [imagen oficial de NGINX](https://hub.docker.com/_/nginx) que balanceará el tráfico entre dos contenedores [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
-<figure class="wp-block-image size-full"><img src="https://aprenderdevops.com/wp-content/uploads/2023/03/python-docker-nginx-2.png" alt=""></figure>## Aplicación web Python “Hola mundo”
+<figure><img src="https://aprenderdevops.com/wp-content/uploads/2023/03/python-docker-nginx-2.png" alt=""></figure>## Aplicación web Python “Hola mundo”
 
 Vamos a utilizar la misma aplicación web Python desarrollada con [Flask](http://flask.pocoo.org/) que utilizamos en la primera entrada, pero con una pequeña modificación que muestra desde que servidor uWSGI se está dando respuesta a la petición realizada desde el cliente.
 
