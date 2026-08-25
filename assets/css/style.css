@@ -2129,14 +2129,6 @@ body.custom-background {
 	margin-bottom: 1.5em;
 }
 
-/* Bloques de código con numeración de líneas: los genera la etiqueta Liquid
-   {% highlight <lenguaje> linenos %}, que Jekyll envuelve en un
-   <figure class="highlight"> con un <pre> SIN clase dentro. Ese <pre> solo
-   casa con .entry-content pre (fondo #222), mientras que el <figure> casa
-   con .entry-content .highlight (fondo #272822 del tema Monokai), así que
-   sin estas reglas el bloque se ve con dos tonos de oscuro superpuestos.
-   Se traslada la caja al <figure> y se neutraliza el <pre>, que conserva el
-   overflow-x heredado y sigue siendo quien hace el scroll horizontal. */
 .entry-content figure.highlight {
 	padding: 1em;
 	border-radius: 4px;
@@ -2151,11 +2143,6 @@ body.custom-background {
 	color: inherit;
 }
 
-/* La tabla de numeración de Rouge no es una tabla de contenido: hay que
-   quitarle todo lo que el tema aplica a `table`/`td`/`tbody` (ancho al 100%,
-   margen inferior de 40px, bordes gris claro y line-height 2). Las reglas de
-   tablas del cuerpo de las entradas ya la excluyen por el combinador hijo de
-   `.entry-content > table`, pero las del propio Generate Pro no. */
 .entry-content .highlight .rouge-table {
 	width: auto;
 	margin: 0;
@@ -2173,13 +2160,17 @@ body.custom-background {
 	margin: 0;
 }
 
-/* Los números en el mismo gris que los comentarios del tema, y sin
-   seleccionar, para que copiar el bloque no se los lleve. */
 .entry-content .highlight .rouge-table td.gutter {
-	padding-right: 1em;
-	color: #75715e;
+	padding-right: 0.5em;
+	border-right: 3px solid #435a5f;
+	color: #afafaf;
+	text-align: right;
 	-webkit-user-select: none;
 	user-select: none;
+}
+
+.entry-content .highlight .rouge-table td.code {
+	padding-left: 1em;
 }
 
 .entry-content .highlight .gh {
