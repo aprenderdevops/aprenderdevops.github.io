@@ -1,7 +1,8 @@
 {% comment %}
   Uso: {% include entry-footer.html post=post %}
-  Categorías enlazadas vía _data/categorias.yml (detalle 1); etiquetas como texto plano
-  sin páginas /tag/ (decisión tomada en el plan).
+  Categorías enlazadas vía _data/categorias.yml (detalle 1). Etiquetas enlazadas a
+  tag/<slug>/, generado por scripts/generar_tags.rb — el slug se calcula aquí con el
+  mismo slugify: 'latin' que usa ese script, así que siempre coinciden (ver CLAUDE.md).
 {% endcomment %}
 <footer class="entry-footer">
 	<p class="entry-meta">
@@ -12,7 +13,11 @@
 			{% endfor %}
 		</span>
 		{% if include.post.tags.size > 0 %}
-		<span class="entry-tags">Etiquetado como: {{ include.post.tags | join: ", " }}</span>
+		<span class="entry-tags">Etiquetado como:
+			{% for etiqueta in include.post.tags %}
+			<a href="/tag/{{ etiqueta | slugify: 'latin' }}/" rel="tag">{{ etiqueta }}</a>{% unless forloop.last %}, {% endunless %}
+			{% endfor %}
+		</span>
 		{% endif %}
 	</p>
 </footer>
