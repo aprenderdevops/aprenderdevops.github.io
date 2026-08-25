@@ -4,7 +4,7 @@ Este fichero proporciona guía a Claude Code (claude.ai/code) al trabajar con c�
 
 ## Qué es esto
 
-El código fuente de [aprenderDevOps](https://aprenderdevops.com), un blog en español sobre DevOps (Docker, Ansible, Kubernetes, CI/CD, infraestructura como código, etc.), alojado en GitHub Pages. En este repositorio no hay `_layouts`/`_includes`/`_sass` propios ni tema declarado en `_config.yml` — el sitio depende por completo del tema preinstalado de GitHub Pages a través del workflow de despliegue. El `Gemfile` del repo es solo para previsualizar en local; el despliegue real no lo usa (ver más abajo).
+El código fuente de [aprenderDevOps](https://aprenderdevops.com), un blog en español sobre DevOps (Docker, Ansible, Kubernetes, CI/CD, infraestructura como código, etc.), alojado en GitHub Pages. El repositorio trae tema propio: `_layouts`/`_includes`/`_data` recrean en Jekyll el aspecto de **Generate Pro** (tema de StudioPress sobre Genesis Framework, GPL-2.0+) que usaba el sitio en su día como WordPress, portado a mano — no hay `_sass` ni build de CSS, `assets/css/style.css` es el `style.css` original del tema más un puñado de reglas propias al final del fichero. El `Gemfile` del repo es solo para previsualizar en local; el despliegue real no lo usa (ver más abajo).
 
 ## Build / despliegue
 
@@ -31,17 +31,32 @@ y abre `http://localhost:4000`. Revisa de vez en cuando que `Gemfile.lock` siga 
   - `tags:` — etiquetas libres, en minúscula, entrecomilladas si tienen varias palabras.
 - Páginas `*.md` de nivel superior (`acerca-de.md`, `categorias.md`, `contacto.md`, `recursos.md`) — páginas estáticas con `layout: page`, con el mismo front matter migrado de WordPress que las entradas (`id`, `guid`).
 - `wp-content/uploads/YYYY/MM/` — todas las imágenes de las entradas, reflejando la estructura original de la biblioteca de medios de WordPress. Las imágenes de las nuevas entradas deben seguir esta misma convención de ruta `YYYY/MM/` y referenciarse mediante el campo `image:` del front matter.
-- `categorias.md` tiene codificada a mano la lista de categorías con sus descripciones y enlaces (`/category/<slug>/`) — al introducir una categoría genuinamente nueva hay que actualizar también esta página, no solo el front matter del post.
+- `categorias.md` tiene codificada a mano la lista de categorías con sus descripciones y enlaces (`/category/<slug>/`) — al introducir una categoría genuinamente nueva hay que actualizar también esta página, no solo el front matter del post, además de `_data/categorias.yml` y `category/<slug>.md` (ver más abajo).
 
-### Categorías existentes (usa una o varias de estas; no inventes categorías nuevas sin actualizar `categorias.md`)
+### Categorías existentes (usa una o varias de estas; no inventes categorías nuevas sin actualizar `categorias.md`, `_data/categorias.yml` y `category/`)
 
 `Aseguramiento de la calidad`, `Cloud`, `Contenedores`, `GitOps`, `Infraestructura como código`, `Integración y entrega continua`, `Otros`.
+
+Los slugs de categoría **no se derivan** del nombre (el filtro `slugify` de Liquid conserva las tildes salvo en modo `latin`, y ninguno de los dos modos da el slug real de `Integración y entrega continua`, que es `integracion-entrega-continua` — sin la «y» — por precedente histórico del sitio en WordPress). Los 7 slugs están fijados a mano en `_data/categorias.yml`, y de ahí los leen el menú, el pie de cada entrada y las páginas de archivo.
+
+## Tema (Generate Pro portado a Jekyll)
+
+El sitio recrea el tema Generate Pro con layouts e includes propios, sin plugins de Jekyll fuera de la lista permitida por GitHub Pages:
+
+- `_layouts/default.html` — esqueleto común (site-container / header / nav / site-inner / footer); `home.html`, `post.html`, `page.html` y `category.html` heredan de él.
+- `_includes/` — `head.html`, `site-header.html`, `nav-primary.html`, `nav-secondary.html`, `entry.html` (tarjeta reutilizada por `home.html` y `category.html`), `entry-header.html`, `entry-footer.html`, `fecha.html` (formatea fechas en español, ya que Liquid no las localiza).
+- `_data/menu.yml` y `_data/categorias.yml` — estructura del menú y mapeo nombre→slug→descripción de categorías.
+- `category/<slug>.md` (×7) — páginas de archivo de categoría escritas a mano, con `category_name` en el front matter; `jekyll-archives` no está en la lista de plugins de GitHub Pages.
+- `index.html` (en la raíz, no `.md`) — portada paginada vía `jekyll-paginate` (declarado en `plugins:` de `_config.yml`; `github-pages` no lo activa por sí solo). **No le pongas `permalink:` en el front matter**: al ser el propio fichero plantilla que `jekyll-paginate` clona para cada página siguiente, un permalink explícito se hereda en todas las páginas paginadas y todas acaban resolviendo a la misma URL.
+- `assets/css/style.css` — el `style.css` de Generate Pro (GPL-2.0+) copiado tal cual, más un bloque de reglas propias al final del fichero: el fondo del body, el logo, `.full-width-content .content` (el único ajuste de anchura, pensado como mando para ampliar la columna de lectura más adelante), el recorte `aspect-ratio`/`object-fit` de las imágenes destacadas (no existen en el repo las variantes `-700x300` que WordPress generaba) y el icono de hamburguesa / flechas de submenú en CSS puro. El tema original apoya esos iconos en la fuente `dashicons` de WordPress, que no está en el repo — cualquier icono nuevo del tema debe evitarla igual.
+- `assets/js/responsive-menu.js` — reescritura sin jQuery del menú responsive de Genesis.
+- El body siempre lleva `class="custom-background custom-header header-image full-width-content"`: la clase `header-image` es la que convierte el título en el logo (crea la caja que aloja la imagen de fondo del `.site-title` y esconde el texto), no un detalle cosmético.
+- No se migraron buscador, comentarios, widgets de sidebar (incluida la suscripción por correo), formulario de contacto ni iconos sociales — eran plugins de WordPress sin equivalente sencillo en Jekyll. Las etiquetas se renderizan como texto plano, sin páginas `/tag/<slug>/`.
 
 ## Convenciones al añadir/editar entradas
 
 - Las entradas nuevas van en `_posts/`, nombradas `YYYY-MM-DD-slug.md`, con `layout: post` y un `permalink: /slug/` explícito.
 - Mantén el front matter entre comillas simples cuando el valor contenga tildes, dos puntos o espacios (sigue el estilo existente).
-- Como en este repo no hay directorio `_layouts`, `layout: post` / `layout: page` se resuelven desde el tema por defecto de GitHub Pages — no añadas layouts personalizados sin añadir también un tema/`_layouts` propio, o el build se romperá.
 - La sintaxis de plantillas Liquid que aparezca literalmente en el cuerpo de un post (por ejemplo, fragmentos de código que muestren `{% raw %}{% ... %}{% endraw %}`) debe envolverse en `{% raw %}...{% endraw %}` para evitar que se rompa el build de Jekyll (ver el historial de commits como precedente).
 
 ## Convenciones de commit
