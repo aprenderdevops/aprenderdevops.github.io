@@ -28,6 +28,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Generate tag pages
+        run: bundle exec ruby scripts/generar_tags.rb
+      - name: Verify tag pages are up to date
+        run: |
+          if [ -n "$(git status --porcelain -- tag/)" ]; then
+            echo "::error::Tag pages (tag/*.md) are out of sync with the tags in _posts/. Run 'bundle exec ruby scripts/generar_tags.rb' locally, review the diff, and commit the changes in tag/ before pushing."
+            git status --porcelain -- tag/
+            exit 1
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
