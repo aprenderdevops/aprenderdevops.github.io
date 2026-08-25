@@ -7,6 +7,9 @@ layout: default
 
 <div class="archive-pagination pagination">
 	<ul>
+		{% if paginator.previous_page %}
+		<li class="pagination-previous"><a href="{{ paginator.previous_page_path | relative_url }}">&#171; Página anterior</a></li>
+		{% endif %}
 		{% for pagina in (1..paginator.total_pages) %}
 		{% if pagina == 1 %}{% assign url_pagina = "/" %}{% else %}{% assign url_pagina = "/page/" | append: pagina | append: "/" %}{% endif %}
 		{% if pagina == paginator.page %}
