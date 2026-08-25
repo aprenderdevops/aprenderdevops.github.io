@@ -92,7 +92,7 @@ La solución para no tener que repetir las configuraciones manuales en cada nuev
 
 Lo primero que tenemos que hacer para construir nuestra propia imagen con Jenkins es escribir el fichero Dockerfile que contendrá las instrucciones para construir nuestra imagen.
 
-```docker
+{% highlight docker linenos %}
 FROM jenkins/jenkins
 
 USER root
@@ -101,7 +101,7 @@ RUN apt-get -y update && apt-get install -y maven
 USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
-```
+{% endhighlight %}
 
 A continuación, explico para que sirven las distintas líneas del fichero Dockerfile:
 
@@ -194,7 +194,7 @@ workflow-support
 
 Para facilitar la construcción de la imagen y la ejecución del contenedor Docker escribimos un fichero docker-compose.yml:
 
-```yaml
+{% highlight yaml linenos %}
 version: '2'
 services:
   master:
@@ -210,7 +210,7 @@ services:
 
 volumes:
   jenkins_home:
-```
+{% endhighlight %}
 
 Indico a continuación para que sirven las líneas más relevantes de este fichero:
 

@@ -63,7 +63,7 @@ Como ya hemos comentado, para poder ejecutar nuestra aplicación web Python nece
 
 ### Dockerfile
 
-```docker
+{% highlight docker linenos %}
 FROM python:3.7.3
 LABEL maintainer="Jose Arturo Fernandez <jarfernandez@aprenderdevops.com>"
 
@@ -97,7 +97,7 @@ VOLUME /WebApp
 
 # Se inicia uWSGI
 ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
-```
+{% endhighlight %}
 
 A continuación, explico las distintas líneas del Dockerfile:
 

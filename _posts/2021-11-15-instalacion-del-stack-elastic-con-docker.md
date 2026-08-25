@@ -56,7 +56,7 @@ El registro Docker de Elastic (<https://www.docker.elastic.co/>) contiene las im
 
 Para la instalación del stack Elastic, vamos a utilizar docker-compose. A continuación, podemos ver el fichero docker-compose.yml que utilizaremos.
 
-```yaml
+{% highlight yaml linenos %}
 version: '3.8'
 
 services:
@@ -104,7 +104,7 @@ services:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     depends_on:
       - elasticsearch
-```
+{% endhighlight %}
 
 A continuación, paso a explicar el código de este fichero docker-compose:
 

@@ -145,7 +145,7 @@ Para facilitar la construcción de la imagen con el servidor uWSGI que contiene 
 
 ### docker-compose.yml
 
-```yaml
+{% highlight yaml linenos %}
 version: '3.8'
 
 services:
@@ -175,7 +175,7 @@ services:
     volumes:
       - ./WebApp:/WebApp
     restart: unless-stopped
-```
+{% endhighlight %}
 
 A continuación, paso a explicar el código de este fichero docker-compose.yml:
 
@@ -199,7 +199,7 @@ Para que nuestro contenedor NGINX funcione como proxy inverso y balanceador de c
 
 ### nginx.conf
 
-```nginx
+{% highlight nginx linenos %}
 user nginx;
 worker_processes 1;
 
@@ -234,7 +234,7 @@ http {
     }
   }
 }
-```
+{% endhighlight %}
 
 A continuación, explico en detalle esta configuración:
 
