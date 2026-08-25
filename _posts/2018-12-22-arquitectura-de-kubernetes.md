@@ -4,7 +4,6 @@ title: 'Arquitectura de Kubernetes'
 date: '2018-12-22T01:45:31+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=382'
 permalink: /arquitectura-de-kubernetes/
 image: /assets/images/2018/07/kubernetes.png
 categories:

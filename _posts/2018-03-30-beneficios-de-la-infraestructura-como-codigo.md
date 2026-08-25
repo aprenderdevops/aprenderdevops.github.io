@@ -4,7 +4,6 @@ title: 'Beneficios de la Infraestructura como Código'
 date: '2018-03-30T13:30:49+02:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=280'
 permalink: /beneficios-de-la-infraestructura-como-codigo/
 image: /assets/images/2018/03/beneficios-infraestructura-como-codigo.png
 categories:

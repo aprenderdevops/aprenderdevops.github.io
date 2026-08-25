@@ -4,7 +4,6 @@ title: Recursos
 date: '2017-10-07T23:16:57+02:00'
 author: Arturo
 layout: page
-guid: 'http://aprenderdevops.com/?page_id=45'
 permalink: /recursos/
 ---
 

@@ -4,7 +4,6 @@ title: 'Instalación de Nexus 3 en CentOS 7'
 date: '2018-01-13T22:45:43+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=181'
 permalink: /instalacion-de-nexus-3-en-centos-7/
 image: /assets/images/2018/01/instalacion-nexus.png
 categories:

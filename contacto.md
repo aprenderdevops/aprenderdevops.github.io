@@ -4,7 +4,6 @@ title: Contacto
 date: '2017-10-07T23:19:58+02:00'
 author: Arturo
 layout: page
-guid: 'http://aprenderdevops.com/?page_id=52'
 permalink: /contacto/
 ---
 

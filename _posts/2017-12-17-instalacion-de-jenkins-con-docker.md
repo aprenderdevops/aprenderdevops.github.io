@@ -4,7 +4,6 @@ title: 'Instalación de Jenkins con Docker'
 date: '2017-12-17T15:15:42+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=109'
 permalink: /instalacion-de-jenkins-con-docker/
 image: /assets/images/2017/12/jenkins-docker.png
 categories:

@@ -4,7 +4,6 @@ title: 'Configuración de builds automatizados en Docker Hub utilizando tags de 
 date: '2018-02-14T07:30:58+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=228'
 permalink: /builds-automatizados-en-docker-hub-utilizando-tags-de-git/
 image: /assets/images/2017/12/builds-dockerhub.png
 categories:

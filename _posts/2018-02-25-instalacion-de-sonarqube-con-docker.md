@@ -4,7 +4,6 @@ title: 'Instalación de SonarQube con Docker'
 date: '2018-02-25T17:35:34+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=262'
 permalink: /instalacion-de-sonarqube-con-docker/
 image: /assets/images/2018/02/sonarqube-docker.png
 categories:

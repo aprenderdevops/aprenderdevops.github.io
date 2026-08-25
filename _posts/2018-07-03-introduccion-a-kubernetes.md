@@ -4,7 +4,6 @@ title: 'Introducción a Kubernetes'
 date: '2018-07-03T23:15:39+02:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=292'
 permalink: /introduccion-a-kubernetes/
 image: /assets/images/2018/07/kubernetes.png
 categories:

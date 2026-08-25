@@ -4,7 +4,6 @@ title: '¿Qué es DevOps?'
 date: '2017-12-01T22:50:16+01:00'
 author: Arturo
 layout: post
-guid: 'https://aprenderdevops.com/?p=70'
 permalink: /que-es-devops/
 image: /assets/images/2017/12/que-es-devops.png
 categories:

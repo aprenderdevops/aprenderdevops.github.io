@@ -4,7 +4,6 @@ title: 'Despliegue de una aplicación web Python en Docker con NGINX como proxy 
 date: '2023-03-06T01:15:18+01:00'
 author: Arturo
 layout: post
-guid: 'https://aprenderdevops.com/?p=816'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker-con-nginx-como-proxy-inverso-y-balanceador-de-carga/
 image: /assets/images/2023/03/python-docker-nginx-1.png
 categories:

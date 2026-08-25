@@ -4,7 +4,6 @@ title: 'Instalación del stack Elastic con Docker'
 date: '2021-11-15T00:25:00+01:00'
 author: Arturo
 layout: post
-guid: 'https://aprenderdevops.com/?p=574'
 permalink: /instalacion-del-stack-elastic-con-docker/
 image: /assets/images/2021/11/elastic-docker-1.png
 categories:

@@ -4,7 +4,6 @@ title: 'Despliegue de una aplicación web Python en Docker'
 date: '2019-05-11T00:30:23+02:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=419'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker/
 image: /assets/images/2019/04/python-docker.png
 categories:

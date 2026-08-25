@@ -4,7 +4,6 @@ title: 'Instalación de GitLab con Ansible en una máquina con CentOS 7 provisio
 date: '2017-12-06T14:45:09+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=101'
 permalink: /instalacion-gitlab-ansible-una-maquina-centos-7-provisionada-vagrant/
 image: /assets/images/2017/12/gitlab-ansible.png
 categories:

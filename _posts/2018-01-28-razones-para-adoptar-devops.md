@@ -4,7 +4,6 @@ title: 'Razones para adoptar DevOps'
 date: '2018-01-28T19:25:23+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=200'
 permalink: /razones-para-adoptar-devops/
 image: /assets/images/2018/01/razones-para-adoptar-devops.png
 categories:

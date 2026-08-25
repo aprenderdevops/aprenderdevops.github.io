@@ -4,7 +4,6 @@ title: 'Configuración de builds automatizados en Docker Hub'
 date: '2017-12-31T10:00:17+01:00'
 author: Arturo
 layout: post
-guid: 'http://aprenderdevops.com/?p=129'
 permalink: /configuracion-de-builds-automatizados-en-docker-hub/
 image: /assets/images/2017/12/builds-dockerhub.png
 categories:

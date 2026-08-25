@@ -4,7 +4,6 @@ title: 'Despliegue de una aplicación web Python en Docker con construcción mul
 date: '2023-04-08T13:30:00+02:00'
 author: Arturo
 layout: post
-guid: 'https://aprenderdevops.com/?p=909'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker-con-construccion-multi-etapa/
 image: /assets/images/2019/04/python-docker.png
 categories:
