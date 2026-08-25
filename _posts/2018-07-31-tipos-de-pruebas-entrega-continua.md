@@ -14,7 +14,7 @@ tags:
     - pruebas
 ---
 
-El aseguramiento de la calidad del software debe ser una de las prácticas esenciales dentro de las organizaciones TI de alto rendimiento que [adoptan un enfoque DevOps](https://aprenderdevops.com/razones-para-adoptar-devops/). En esta entrada vamos a ver los distintos tipos de pruebas que se deben incluir en un pipeline de entrega continua.
+El aseguramiento de la calidad del software debe ser una de las prácticas esenciales dentro de las organizaciones TI de alto rendimiento que [adoptan un enfoque DevOps](/razones-para-adoptar-devops/). En esta entrada vamos a ver los distintos tipos de pruebas que se deben incluir en un pipeline de entrega continua.
 
 ## Objetivos de las pruebas
 

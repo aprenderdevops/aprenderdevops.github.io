@@ -16,7 +16,7 @@ tags:
     - uwsgi
 ---
 
-En una entrada anterior vimos [cómo desplegar una aplicación web Python en Docker](https://aprenderdevops.com/despliegue-de-una-aplicacion-web-python-en-docker/) y posteriormente añadimos [NGINX como proxy inverso y balanceador de carga](https://aprenderdevops.com/despliegue-de-una-aplicacion-web-python-en-docker-con-nginx-como-proxy-inverso-y-balanceador-de-carga/).
+En una entrada anterior vimos [cómo desplegar una aplicación web Python en Docker](/despliegue-de-una-aplicacion-web-python-en-docker/) y posteriormente añadimos [NGINX como proxy inverso y balanceador de carga](/despliegue-de-una-aplicacion-web-python-en-docker-con-nginx-como-proxy-inverso-y-balanceador-de-carga/).
 
 En esta ocasión vamos a mejorar la construcción de la imagen Docker que utilizamos para desplegar la aplicación web Python, y lo haremos utilizando **construcción multi-etapa o multi-stage build.**
 
@@ -45,7 +45,7 @@ También podéis hacer este laboratorio en [Killercoda](https://killercoda.com/a
 
 ## Construcción multi-etapa de nuestra imagen
 
-Como ya vimos en la entrada [Despliegue de una aplicación web Python en Docker](https://aprenderdevops.com/despliegue-de-una-aplicacion-web-python-en-docker/), para poder ejecutar nuestra aplicación necesitaremos un servidor de aplicaciones WSGI como uWSGI. Por lo tanto, construiremos una imagen Docker que contenga dicho servidor y nuestra aplicación web Python.
+Como ya vimos en la entrada [Despliegue de una aplicación web Python en Docker](/despliegue-de-una-aplicacion-web-python-en-docker/), para poder ejecutar nuestra aplicación necesitaremos un servidor de aplicaciones WSGI como uWSGI. Por lo tanto, construiremos una imagen Docker que contenga dicho servidor y nuestra aplicación web Python.
 
 ### Dockerfile multi-stage
 

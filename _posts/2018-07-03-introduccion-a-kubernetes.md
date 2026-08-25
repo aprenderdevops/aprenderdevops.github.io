@@ -13,7 +13,7 @@ tags:
     - kubernetes
 ---
 
-Kubernetes se ha convertido en el orquestador de [contenedores](https://aprenderdevops.com/category/contenedores/) de facto. En esta entrada vamos a ver algunos conceptos clave de este orquestador.
+Kubernetes se ha convertido en el orquestador de [contenedores](/category/contenedores/) de facto. En esta entrada vamos a ver algunos conceptos clave de este orquestador.
 
 ## ¿Qué es Kubernetes?
 

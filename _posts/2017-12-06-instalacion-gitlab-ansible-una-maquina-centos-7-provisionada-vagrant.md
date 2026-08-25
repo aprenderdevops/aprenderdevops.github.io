@@ -43,7 +43,7 @@ Para hacer este laboratorio necesitáis tener en un equipo o en un servidor al q
 
 A continuación, vamos a ver los pasos necesarios para hacer el laboratorio.
 
-## Provisión de la máquina virtual con CentOS 7 mediante Vagrant
+## Provisión de la máquina virtual con CentOS 7 mediante Vagrant {#vagrant-centos7}
 
 En el directorio en el que vamos a ubicar el Vagrantfile ejecutamos el siguiente comando:
 

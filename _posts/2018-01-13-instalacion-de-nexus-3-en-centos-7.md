@@ -49,7 +49,7 @@ Sonatype Nexus Repository OSS 3 puede gestionar los siguientes formatos:
 
 Para hacer este laboratorio únicamente necesitáis tener un equipo con CentOS 7, aunque seguramente funcione también en un equipo con Red Hat Enterprise Linux 7.
 
-Si no tenéis una máquina con CentOS 7, podéis crear una máquina virtual utilizando [Vagrant](https://www.vagrantup.com/), tal y como vimos en la entrada [Instalación de GitLab con Ansible en una máquina con CentOS 7 provisionada con Vagrant](https://aprenderdevops.com/instalacion-gitlab-ansible-una-maquina-centos-7-provisionada-vagrant#vagrant-centos7).
+Si no tenéis una máquina con CentOS 7, podéis crear una máquina virtual utilizando [Vagrant](https://www.vagrantup.com/), tal y como vimos en la entrada [Instalación de GitLab con Ansible en una máquina con CentOS 7 provisionada con Vagrant](/instalacion-gitlab-ansible-una-maquina-centos-7-provisionada-vagrant/#vagrant-centos7).
 
 A continuación, vamos a ver los pasos necesarios para instalar Sonatype Nexus Repository OSS 3 en CentOS 7.
 

@@ -13,7 +13,7 @@ tags:
     - cultura
 ---
 
-En esta entrada os cuento 7 razones por las que las compañías deberían adoptar [DevOps](http://aprenderdevops.com/que-es-devops/) en sus departamentos TI.
+En esta entrada os cuento 7 razones por las que las compañías deberían adoptar [DevOps](/que-es-devops/) en sus departamentos TI.
 
 ## 1. Reducción del Time to Market
 

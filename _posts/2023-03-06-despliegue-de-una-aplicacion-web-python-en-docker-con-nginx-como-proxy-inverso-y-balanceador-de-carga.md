@@ -17,7 +17,7 @@ tags:
     - uwsgi
 ---
 
-En una entrada anterior vimos cómo [desplegar una aplicación web Python en Docker](https://aprenderdevops.com/despliegue-de-una-aplicacion-web-python-en-docker/). En esta ocasión vamos a desplegar la misma aplicación, con una modificación mínima, pero por delante levantaremos un contenedor con [NGINX](https://www.nginx.com/) que hará de proxy inverso y balanceador de carga.
+En una entrada anterior vimos cómo [desplegar una aplicación web Python en Docker](/despliegue-de-una-aplicacion-web-python-en-docker/). En esta ocasión vamos a desplegar la misma aplicación, con una modificación mínima, pero por delante levantaremos un contenedor con [NGINX](https://www.nginx.com/) que hará de proxy inverso y balanceador de carga.
 
 Un proxy inverso es un servidor que actúa como intermediario entre los clientes y los servidores web, y que se utiliza para proteger y optimizar el acceso a los servidores.
 

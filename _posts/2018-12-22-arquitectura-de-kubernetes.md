@@ -13,7 +13,7 @@ tags:
     - kubernetes
 ---
 
-Tras la entrada [Introducción a Kubernetes](https://aprenderdevops.com/introduccion-a-kubernetes/), en la que conocimos este orquestador de contenedores y vimos algunos conceptos clave, vamos a ver su arquitectura, identificando los distintos componentes en los que está organizado y su relación entre ellos.
+Tras la entrada [Introducción a Kubernetes](/introduccion-a-kubernetes/), en la que conocimos este orquestador de contenedores y vimos algunos conceptos clave, vamos a ver su arquitectura, identificando los distintos componentes en los que está organizado y su relación entre ellos.
 
 ## Nodos
 
@@ -30,7 +30,7 @@ En un clúster Kubernetes puede haber un único nodo master o varios si queremos
 
 ### Nodos worker
 
-Los nodos worker, también denominados simplemente nodos, son los responsables de ejecutar las aplicaciones en pods. Como ya vimos en la entrada [Introducción a Kubernetes](https://aprenderdevops.com/introduccion-a-kubernetes/), un pod es una colección lógica de contenedores y recursos compartidos por esos contenedores que pertenecen a una aplicación.
+Los nodos worker, también denominados simplemente nodos, son los responsables de ejecutar las aplicaciones en pods. Como ya vimos en la entrada [Introducción a Kubernetes](/introduccion-a-kubernetes/), un pod es una colección lógica de contenedores y recursos compartidos por esos contenedores que pertenecen a una aplicación.
 
 Como curiosidad, indicar que en la documentación de las primeras versiones de Kubernetes los nodos worker se denominaban minions.
 

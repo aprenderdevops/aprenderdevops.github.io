@@ -20,7 +20,7 @@ tags:
 
 En esta entrada vamos a ver cómo configurar builds automatizados en Docker Hub para que estos se desencadenen a partir del etiquetado de un commit en GitHub.
 
-En la entrada [Configuración de builds automatizados en Docker Hub](http://aprenderdevops.com/configuracion-de-builds-automatizados-en-docker-hub/) vimos cómo configurar un repositorio [Docker Hub](https://hub.docker.com/) ([aprenderdevops/jenkins](https://hub.docker.com/r/aprenderdevops/jenkins/)) para enlazarlo con un repositorio de código [GitHub](https://github.com/) ([aprenderdevops/docker-jenkins](https://github.com/aprenderdevops/docker-jenkins)), de forma que cualquier actualización del código fuente en el repositorio GitHub desencadene automáticamente en Docker Hub la construcción de una nueva versión de la imagen Docker.
+En la entrada [Configuración de builds automatizados en Docker Hub](/configuracion-de-builds-automatizados-en-docker-hub/) vimos cómo configurar un repositorio [Docker Hub](https://hub.docker.com/) ([aprenderdevops/jenkins](https://hub.docker.com/r/aprenderdevops/jenkins/)) para enlazarlo con un repositorio de código [GitHub](https://github.com/) ([aprenderdevops/docker-jenkins](https://github.com/aprenderdevops/docker-jenkins)), de forma que cualquier actualización del código fuente en el repositorio GitHub desencadene automáticamente en Docker Hub la construcción de una nueva versión de la imagen Docker.
 
 Con esta configuración, cualquier actualización de código en la rama master del repositorio GitHub desencadenará la construcción de una nueva imagen Docker etiquetada con el tag latest.
 
@@ -56,11 +56,11 @@ En esta configuración, si previamente ya habíamos configurado los builds autom
 
 ## Actualización del código en GitHub y etiquetado con un tag
 
-Para probar que esta nueva configuración de builds automatizados funciona correctamente, vamos a hacer una modificación en la rama master del código de nuestro proyecto de [instalación de Jenkins con Docker](http://aprenderdevops.com/instalacion-de-jenkins-con-docker/). También vamos a etiquetar ese código con el comando git tag. Por último, lo vamos a subir al repositorio GitHub ([aprenderdevops/docker-jenkins](https://github.com/aprenderdevops/docker-jenkins)) mediante el comando git push.
+Para probar que esta nueva configuración de builds automatizados funciona correctamente, vamos a hacer una modificación en la rama master del código de nuestro proyecto de [instalación de Jenkins con Docker](/instalacion-de-jenkins-con-docker/). También vamos a etiquetar ese código con el comando git tag. Por último, lo vamos a subir al repositorio GitHub ([aprenderdevops/docker-jenkins](https://github.com/aprenderdevops/docker-jenkins)) mediante el comando git push.
 
 Todo esto, debería desencadenar la construcción de dos imágenes Docker, una correspondiente a la rama master y que se etiquetará con el tag latest, y otra correspondiente al tag de Git que hayamos subido a GitHub y que se etiquetará con ese mismo tag. Ambas imágenes serán totalmente idénticas, cambiando únicamente la etiqueta que tienen asignada.
 
-Vamos a ver en detalle los pasos de esta modificación en el código del proyecto de [instalación de Jenkins con Docker](http://aprenderdevops.com/instalacion-de-jenkins-con-docker/).
+Vamos a ver en detalle los pasos de esta modificación en el código del proyecto de [instalación de Jenkins con Docker](/instalacion-de-jenkins-con-docker/).
 
 ### Instalación de un plugin adicional en Jenkins
 

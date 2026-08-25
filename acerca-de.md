@@ -8,7 +8,7 @@ guid: 'http://aprenderdevops.com/?page_id=27'
 permalink: /acerca-de/
 ---
 
-Soy Arturo Fernández y este es mi blog [aprenderDevOps](https://aprenderdevops.com). ¡Bienvenido!
+Soy Arturo Fernández y este es mi blog [aprenderDevOps](/). ¡Bienvenido!
 
 Si has llegado hasta aquí es porque coincides conmigo en que el presente y el futuro de los que nos dedicamos a las Tecnologías de la Información pasa por adoptar una nueva forma de trabajar que se conoce como DevOps.
 

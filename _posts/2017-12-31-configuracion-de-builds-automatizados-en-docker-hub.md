@@ -37,7 +37,7 @@ Una vez que dispongáis de una cuenta, subir una imagen Docker a Docker Hub es t
 $ docker push aprenderdevops/jenkins:latest
 ```
 
-En este caso estoy subiendo la imagen con Jenkins que construí en la entrada [Instalación de Jenkins con Docker](https://aprenderdevops.com/instalacion-de-jenkins-con-docker/).
+En este caso estoy subiendo la imagen con Jenkins que construí en la entrada [Instalación de Jenkins con Docker](/instalacion-de-jenkins-con-docker/).
 
 En vuestro caso, sólo tendréis que cambiar el nombre de la cuenta aprenderdevops por el de vuestra cuenta de Docker Hub, y el nombre del repositorio de imágenes, en este caso jenkins, por el nombre que le queráis dar a vuestra imagen.
 
