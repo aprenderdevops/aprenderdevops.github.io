@@ -56,7 +56,7 @@ A continuación, pasamos a ver los pasos necesarios para instalar Jenkins con un
 
 Lo más sencillo para probar Jenkins es ejecutar un contenedor a partir de la imagen jenkins/jenkins. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins
 ```
@@ -65,7 +65,7 @@ $ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins
 
 Nos solicitará una contraseña que podemos encontrar en la salida de la ejecución del contenedor anterior o bien ejecutando los siguientes comandos:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker ps | grep jenkins/jenkins
 f687f96f8810    jenkins/jenkins  "/bin/tini -- /usr..." 15 minutes ago   Up 15 minutes   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp determined_ptolemy
@@ -73,7 +73,7 @@ f687f96f8810    jenkins/jenkins  "/bin/tini -- /usr..." 15 minutes ago   Up 15 m
 
 </div>Con este comando obtenemos el identificador del contenedor (la primera cadena de caracteres). Para obtener la contraseña ejecutamos el siguiente comando sustituyendo el identificador del contenedor por el que obtengáis en la salida del comando anterior:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker exec -it f687f96f8810 cat /var/jenkins_home/secrets/initialAdminPassword
 0aa34fc2581d415d81f9c4e2ee98213c
@@ -81,7 +81,7 @@ $ docker exec -it f687f96f8810 cat /var/jenkins_home/secrets/initialAdminPasswor
 
 </div>Si queremos que los cambios que realicemos en la configuración de Jenkins persistan incluso tras la destrucción del contenedor, debemos arrancar el contenedor con un volumen. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins
 ```
@@ -96,7 +96,7 @@ La solución para no tener que repetir las configuraciones manuales en cada nuev
 
 Lo primero que tenemos que hacer para construir nuestra propia imagen con Jenkins es escribir el fichero Dockerfile que contendrá las instrucciones para construir nuestra imagen.
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 FROM jenkins/jenkins
 
@@ -120,7 +120,7 @@ RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 Como ya he indicado, en el fichero plugins.txt incluimos cada plugin que queremos que se instale en Jenkins. Se incluye un plugin por línea, tal y como puede verse a continuación:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 ace-editor
 analysis-core
@@ -200,7 +200,7 @@ workflow-support
 
 Para facilitar la construcción de la imagen y la ejecución del contenedor Docker escribimos un fichero docker-compose.yml:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 version: '2'
 services:
@@ -232,14 +232,14 @@ volumes:
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker-compose build
 ```
 
 </div>Para arrancar el contenedor con Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker-compose up -d
 ```
@@ -248,7 +248,7 @@ $ docker-compose up -d
 
 Para obtener la contraseña del usuario admin de Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker exec -it dockerjenkins_master_1 cat /var/jenkins_home/secrets/initialAdminPassword
 ```

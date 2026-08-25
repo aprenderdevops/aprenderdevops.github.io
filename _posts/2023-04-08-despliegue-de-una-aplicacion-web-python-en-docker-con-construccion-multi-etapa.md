@@ -49,7 +49,7 @@ Como ya vimos en la entrada [Despliegue de una aplicación web Python en Docker]
 
 ### Dockerfile multi-stage
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 # Version de Python (solo mayor y menor)
 ARG _PYTHON_VERSION=3.11
@@ -107,14 +107,14 @@ ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker build -t aprenderdevops/uwsgi .
 ```
 
 </div>Para arrancar el contenedor ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker run -d -p 8080:8000 --restart unless-stopped -v $(pwd)/WebApp:/WebApp aprenderdevops/uwsgi
 ```

@@ -32,7 +32,7 @@ Invertir en la automatización de pruebas es costoso al principio, pero una vez 
 
 A continuación, vamos a ver los distintos tipos de pruebas que existen y para que sirve cada uno de ellos.
 
-<figure class="wp-block-table">| **Tipo de prueba** | **Para confirmar que** |
+<figure class="wp-block-table" markdown="1">| **Tipo de prueba** | **Para confirmar que** |
 |---|---|
 | Pruebas unitarias | Las funciones y clases funcionan como se espera bajo una variedad de entradas. |
 | Pruebas de integración | Los módulos integrados funcionan en conjunto y junto con la infraestructura, como colas de mensajes y bases de datos. En entornos de microservicios las pruebas de integración de todos los componentes desplegados son cada vez más importantes para asegurar el correcto funcionamiento del software en su conjunto. |

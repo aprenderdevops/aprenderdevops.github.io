@@ -59,7 +59,7 @@ Para facilitar la instalación de SonarQube en contenedores Docker vamos a utili
 
 A continuación, podéis ver el fichero docker-compose.yml que describe cómo se van a ejecutar los contenedores.
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 version: '2'
 
@@ -106,7 +106,7 @@ volumes:
 
 </div>Para arrancar los contenedores ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```
 
 $ docker-compose up -d
 ```
