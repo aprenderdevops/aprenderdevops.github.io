@@ -175,7 +175,7 @@ Una vez arrancados los tres contenedores del stack Elastic, para comprobar si el
 
 Abrimos un navegador y accedemos a http://localhost:9200. Deberíamos ver una salida similar a la mostrada en la siguiente captura de pantalla.
 
-<figure class="wp-block-image size-full">[![Instalación del stack Elastic con Docker](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png)](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png)</figure>### Logstash
+<figure class="wp-block-image size-full"><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png" alt="Instalación del stack Elastic con Docker"></a></figure>### Logstash
 
 A continuación, se muestra el fichero <meta charset="utf-8"></meta>[logstash/pipeline/logstash.conf](https://github.com/aprenderdevops/docker-elastic/blob/main/logstash/pipeline/logstash.conf), que contiene la <meta charset="utf-8"></meta>configuración del pipeline que <meta charset="utf-8"></meta>nos va a permitir comprobar el funcionamiento <meta charset="utf-8"></meta>de Logstash.
 
@@ -283,6 +283,6 @@ $ curl -XGET "http://localhost:9200/heartbeat/_search?pretty=true" -H 'Content-T
 
 Para comprobar el correcto funcionamiento de Kibana, abrimos un navegador y accedemos a http://localhost:5601. Esto debería abrir la consola de Kibana, tal y como se muestra en la siguiente captura de pantalla.
 
-<figure class="wp-block-image size-large">[![Instalación del stack Elastic con Docker](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png)](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png)</figure>## Código fuente del laboratorio
+<figure class="wp-block-image size-large"><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png" alt="Instalación del stack Elastic con Docker"></a></figure>## Código fuente del laboratorio
 
 Podéis descargar o clonar el código fuente completo de este laboratorio de GitHub de <https://github.com/aprenderdevops/docker-elastic>.
