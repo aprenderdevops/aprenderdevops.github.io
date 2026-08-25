@@ -1,0 +1,28 @@
+<nav class="nav-primary" aria-label="Principal">
+	<div class="wrap">
+		<ul class="menu genesis-nav-menu menu-primary">
+			{% for item in site.data.menu %}
+			{% assign es_actual = false %}
+			{% if item.inicio and page.url == '/' %}{% assign es_actual = true %}{% endif %}
+			{% if item.url == page.url %}{% assign es_actual = true %}{% endif %}
+			<li class="menu-item{% if item.inicio %} menu-item-home{% endif %}{% if item.categorias or item.hijos %} menu-item-has-children{% endif %}{% if es_actual %} current-menu-item current_page_item{% endif %}">
+				<a href="{{ item.url }}"{% if es_actual %} aria-current="page"{% endif %}><span>{{ item.titulo }}</span></a>
+				{% if item.categorias %}
+				<ul class="sub-menu">
+					{% for categoria in site.data.categorias %}
+					<li class="menu-item"><a href="/category/{{ categoria.slug }}/"><span>{{ categoria.nombre }}</span></a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				{% if item.hijos %}
+				<ul class="sub-menu">
+					{% for hijo in item.hijos %}
+					<li class="menu-item"><a href="{{ hijo.url }}"><span>{{ hijo.titulo }}</span></a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</nav>

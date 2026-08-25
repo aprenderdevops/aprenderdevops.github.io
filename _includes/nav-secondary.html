@@ -1,0 +1,14 @@
+<nav class="nav-secondary" aria-label="Secundario">
+	<div class="wrap">
+		<ul class="menu genesis-nav-menu menu-secondary">
+			{% for item in site.data.menu %}
+			{% assign es_actual = false %}
+			{% if item.inicio and page.url == '/' %}{% assign es_actual = true %}{% endif %}
+			{% if item.url == page.url %}{% assign es_actual = true %}{% endif %}
+			<li class="menu-item{% if item.inicio %} menu-item-home{% endif %}{% if es_actual %} current-menu-item current_page_item{% endif %}">
+				<a href="{{ item.url }}"{% if es_actual %} aria-current="page"{% endif %}><span>{{ item.titulo }}</span></a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</nav>
