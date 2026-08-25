@@ -98,6 +98,7 @@ A diferencia de WordPress (donde el nombre del autor bajo cada entrada no enlaza
 - Las entradas nuevas van en `_posts/`, nombradas `YYYY-MM-DD-slug.md`, con `layout: post` y un `permalink: /slug/` explícito.
 - Mantén el front matter entre comillas simples cuando el valor contenga tildes, dos puntos o espacios (sigue el estilo existente).
 - La sintaxis de plantillas Liquid que aparezca literalmente en el cuerpo de un post (por ejemplo, fragmentos de código que muestren `{% raw %}{% ... %}{% endraw %}`) debe envolverse en `{% raw %}...{% endraw %}` para evitar que se rompa el build de Jekyll (ver el historial de commits como precedente).
+- **Los enlaces a otras entradas y páginas del propio blog van con ruta relativa de raíz** (`[texto](/slug/)`, `[texto](/category/<slug>/)`), nunca con el dominio completo — misma razón que las imágenes: así resuelven igual en local (`bundle exec jekyll serve`), en `aprenderdevops.github.io` y en el dominio propio. Es también lo que hacen todas las plantillas del tema (`_includes/entry-footer.html`, `nav-primary.html`...). Los `guid:` del front matter son la excepción: son artefactos de WordPress que sí conservan la URL absoluta. Para comprobarlo: `grep -rn '\](https\?://aprenderdevops' _posts/*.md acerca-de.md categorias.md contacto.md recursos.md` no debe devolver nada (`CLAUDE.md` y `README.md` quedan fuera a propósito: no forman parte del sitio —están en `exclude:`— y enlazan al blog publicado desde GitHub, donde la URL absoluta es la correcta).
 
 ### Bloques de código
 
