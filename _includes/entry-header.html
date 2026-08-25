@@ -1,10 +1,12 @@
 {% comment %}
   Uso: {% include entry-header.html post=post tipo="listado" %} o tipo="single".
-  Detalle 9 del plan: el título es h2 en listados y h1 en la entrada individual;
-  el autor se renderiza como texto plano, sin enlazar a /author/.
+  Detalle 9 del plan: el título es h2 en listados y h1 en la entrada individual.
+  El autor enlaza a author/<slug>/, generado por scripts/generar_autores.rb — el
+  slug se calcula aquí con el mismo slugify: 'latin' que usa ese script, así que
+  siempre coinciden (ver CLAUDE.md).
 {% endcomment %}
 <header class="entry-header">
-	<p class="entry-meta"><time class="entry-time">{% include fecha.html fecha=include.post.date %}</time> por <span class="entry-author"><span class="entry-author-name">{{ include.post.author }}</span></span></p>
+	<p class="entry-meta"><time class="entry-time">{% include fecha.html fecha=include.post.date %}</time> por <span class="entry-author"><a class="entry-author-name" href="/author/{{ include.post.author | slugify: 'latin' }}/" rel="author">{{ include.post.author }}</a></span></p>
 	{% if include.tipo == "single" %}
 	<h1 class="entry-title">{{ include.post.title }}</h1>
 	{% else %}
