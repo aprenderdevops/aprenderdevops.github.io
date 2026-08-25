@@ -1,3 +1,9 @@
 url: 'https://aprenderdevops.com'
 name: aprenderDevOps
 description: 'Para profesionales TI interesados en DevOps'
+
+exclude:
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
