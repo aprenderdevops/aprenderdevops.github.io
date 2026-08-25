@@ -1,0 +1,6 @@
+{% comment %}
+  Liquid no localiza fechas (detalle 10 del plan). Uso: {% include fecha.html fecha=post.date %}
+{% endcomment %}
+{% assign meses = "enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre" | split: "," %}
+{% assign indice_mes = include.fecha | date: "%-m" | minus: 1 %}
+{{ include.fecha | date: "%-d" }} de {{ meses[indice_mes] }} de {{ include.fecha | date: "%Y" }}
