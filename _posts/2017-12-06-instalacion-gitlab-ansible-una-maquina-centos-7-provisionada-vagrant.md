@@ -309,7 +309,7 @@ El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el qu
 
 Aunque el código es bastante explicativo, vamos a ver para que sirven algunas de las líneas de este fichero:
 
-- En la línea 3 se incluyen las variables contenidas en el fichero correspondiente a la familia de sistema operativo en el que se ejecuta el playbook Ansible. Para ello, se hace uso de la variable {{ ansible\_os\_family }} que nos indica la familia del sistema operativo en el que se está ejecutando el playbook. Para CentOS 7 el valor de esta variable es «RedHat», por lo que en este caso se cargan las variables contenidas en el fichero RedHat.yml.
+- En la línea 3 se incluyen las variables contenidas en el fichero correspondiente a la familia de sistema operativo en el que se ejecuta el playbook Ansible. Para ello, se hace uso de la variable {% raw %}{{ ansible_os_family }}{% endraw %} que nos indica la familia del sistema operativo en el que se está ejecutando el playbook. Para CentOS 7 el valor de esta variable es «RedHat», por lo que en este caso se cargan las variables contenidas en el fichero RedHat.yml.
 - De las líneas 5 a la 11 se comprueba si ya existe el fichero de configuración de GitLab y si GitLab ya está instalado.
 - De las líneas 13 a la 19 se instalan los paquetes de sistema operativo necesarios para el correcto funcionamiento de GitLab.
 - De las líneas 21 a la 30 se descarga el script de instalación del repositorio de GitLab, lo deja en el directorio /tmp y lo ejecuta para instalar el repositorio.
