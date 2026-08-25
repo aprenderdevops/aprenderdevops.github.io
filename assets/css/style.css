@@ -2052,10 +2052,8 @@ Media Queries
 
 
 /*
-Ajustes propios para la migración a Jekyll
+Custom adjustments for the Jekyll migration
 ---------------------------------------------------------------------------------------------------- */
-
-/* En producción estas dos reglas vivían en un <style> de la página, no en style.css */
 
 .site-title a {
 	background: url(/assets/images/2017/10/aprenderDevOps360x140.png) no-repeat;
@@ -2065,19 +2063,16 @@ body.custom-background {
 	background-color: #f0f0f0;
 }
 
-/* Única regla de anchura propia: centra .content en vez de dejarlo flotando a la derecha,
-   ahora que no hay sidebar. Es el mando a tocar si se decide ampliar la columna de lectura. */
-
 .full-width-content .content {
 	float: none;
-	max-width: 740px;
+	max-width: 900px;
 	margin: 0 auto;
 }
 
-/* Icono de hamburguesa sin dashicons (detalle 6 del plan): el tema original lo apoya en
-   la fuente dashicons de WordPress, que no está en este repo. Se sustituye por CSS puro.
-   Las flechas de submenú del menú responsive (detalle 9) se corrigen en su propia regla,
-   dentro del media query de 768px más arriba, por el mismo motivo. */
+.site-header .wrap,
+.nav-primary .wrap {
+	max-width: 900px;
+}
 
 .responsive-menu-icon {
 	padding: 18px 0;
@@ -2093,25 +2088,11 @@ body.custom-background {
 	box-shadow: 0 6px 0 #222, 0 12px 0 #222;
 }
 
-/* Detalle 8 del plan: no existen en el repo las variantes recortadas -700x300 de las
-   imágenes destacadas. Se replica ese recorte por CSS sobre la imagen base a tamaño
-   completo, en vez de generar ficheros. */
-
 .entry-image {
 	aspect-ratio: 700 / 300;
 	object-fit: cover;
 	width: 100%;
 }
-
-/* Bloques de código de las entradas (fragmentos ``` procesados por kramdown vía
-   Rouge, el resaltador que trae GitHub Pages). Generate Pro es un tema
-   WordPress y nunca incluyó estilos para esto — solo existía la regla de
-   arriba para `code` en línea. El bloque de abajo evita el fondo doblado al
-   anidar <code> dentro de <pre> y añade scroll horizontal para líneas largas
-   (comandos de shell, JSON, etc.) en vez de desbordar la columna de lectura.
-   El resaltado de sintaxis (colores por tipo de token) es el tema Rouge
-   "monokai.sublime", generado con:
-   bundle exec rougify style monokai.sublime --scope '.entry-content .highlight' */
 
 .entry-content pre {
 	overflow-x: auto;
