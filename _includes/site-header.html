@@ -1,0 +1,12 @@
+<header class="site-header">
+	<div class="wrap">
+		<div class="title-area">
+			{% if page.layout == 'home' %}
+			<h1 class="site-title"><a href="/">{{ site.name }}</a></h1>
+			{% else %}
+			<p class="site-title"><a href="/">{{ site.name }}</a></p>
+			{% endif %}
+			<p class="site-description">{{ site.description }}</p>
+		</div>
+	</div>
+</header>

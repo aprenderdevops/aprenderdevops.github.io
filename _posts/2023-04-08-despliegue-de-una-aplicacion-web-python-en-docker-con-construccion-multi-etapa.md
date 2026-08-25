@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'https://aprenderdevops.com/?p=909'
 permalink: /despliegue-de-una-aplicacion-web-python-en-docker-con-construccion-multi-etapa/
-image: /wp-content/uploads/2019/04/python-docker.png
+image: /assets/images/2019/04/python-docker.png
 categories:
     - Contenedores
 tags:
@@ -49,8 +49,7 @@ Como ya vimos en la entrada [Despliegue de una aplicación web Python en Docker]
 
 ### Dockerfile multi-stage
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```docker
 # Version de Python (solo mayor y menor)
 ARG _PYTHON_VERSION=3.11
 
@@ -103,23 +102,21 @@ VOLUME /WebApp
 ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 ```
 
-</div>### Instrucciones
+### Instrucciones
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ docker build -t aprenderdevops/uwsgi .
 ```
 
-</div>Para arrancar el contenedor ejecutamos el siguiente comando:
+Para arrancar el contenedor ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ docker run -d -p 8080:8000 --restart unless-stopped -v $(pwd)/WebApp:/WebApp aprenderdevops/uwsgi
 ```
 
-</div>Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080. Nos mostrará una página web con el texto “Hello, World!”.
+Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080. Nos mostrará una página web con el texto “Hello, World!”.
 
 También podéis ver la ejecución de estas instrucciones en el siguiente vídeo:
 

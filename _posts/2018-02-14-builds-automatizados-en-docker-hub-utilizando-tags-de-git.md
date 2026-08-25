@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=228'
 permalink: /builds-automatizados-en-docker-hub-utilizando-tags-de-git/
-image: /wp-content/uploads/2017/12/builds-dockerhub.png
+image: /assets/images/2017/12/builds-dockerhub.png
 categories:
     - Contenedores
     - 'Integración y entrega continua'
@@ -46,9 +46,15 @@ Lo primero que tenemos que hacer es logarnos en Docker Hub y acceder a la config
 
 Una vez en la pantalla Build Settings nos aparecerá una configuración similar a la de la siguiente pantalla.
 
-<div class="wp-block-image"><figure class="aligncenter">[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-1-1024x639.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-1.png)</figure></div>En esta configuración, si previamente ya habíamos configurado los builds automatizados, tendremos una línea para la rama master y otra línea para cualquier rama distinta de la rama master. Lo que tenemos que hacer ahora es pulsar en el símbolo más de color verde y añadir una línea de tipo Tag. Para esta nueva línea podemos dejar los valores por defecto. De esta forma, cualquier tag creado en el repositorio GitHub desencadenará un build cuya imagen Docker resultante será etiquetada con el mismo tag que se ha creado en GitHub.
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-1-1024x639.png)](/assets/images/2018/02/builds-dockerhub-tags-1.png)
+{: .aligncenter}
 
-<div class="wp-block-image"><figure class="aligncenter">[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-2-1024x699.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-2.png)</figure></div>## Actualización del código en GitHub y etiquetado con un tag
+En esta configuración, si previamente ya habíamos configurado los builds automatizados, tendremos una línea para la rama master y otra línea para cualquier rama distinta de la rama master. Lo que tenemos que hacer ahora es pulsar en el símbolo más de color verde y añadir una línea de tipo Tag. Para esta nueva línea podemos dejar los valores por defecto. De esta forma, cualquier tag creado en el repositorio GitHub desencadenará un build cuya imagen Docker resultante será etiquetada con el mismo tag que se ha creado en GitHub.
+
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-2-1024x699.png)](/assets/images/2018/02/builds-dockerhub-tags-2.png)
+{: .aligncenter}
+
+## Actualización del código en GitHub y etiquetado con un tag
 
 Para probar que esta nueva configuración de builds automatizados funciona correctamente, vamos a hacer una modificación en la rama master del código de nuestro proyecto de [instalación de Jenkins con Docker](http://aprenderdevops.com/instalacion-de-jenkins-con-docker/). También vamos a etiquetar ese código con el comando git tag. Por último, lo vamos a subir al repositorio GitHub ([aprenderdevops/docker-jenkins](https://github.com/aprenderdevops/docker-jenkins)) mediante el comando git push.
 
@@ -66,8 +72,7 @@ Para añadir un nuevo plugin Jenkins a la imagen Docker únicamente tenemos que 
 
 Una vez realizada la modificación en el código de nuestro proyecto, hacemos un commit de los cambios de nuestro código y le asignamos un tag. Esto lo hacemos ejecutando los comandos que detallo a continuación:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ git add plugins.txt
 $ git commit -m "Se añade el plugin blueocean en plugins.txt"
 [master c38387a] Se añade el plugin blueocean en plugins.txt
@@ -75,12 +80,11 @@ $ git commit -m "Se añade el plugin blueocean en plugins.txt"
 $ git tag 1.5 -m "Versión 1.5. Se añade el plugin Blue Ocean."
 ```
 
-</div>En mi caso he etiquetado esta versión como la 1.5.
+En mi caso he etiquetado esta versión como la 1.5.
 
 Podemos obtener información sobre un determinado tag ejecutando un comando git show como el siguiente:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ git show 1.5
 tag 1.5
 Tagger: aprenderdevops <jarfernandez@aprenderdevops.com>
@@ -115,10 +119,9 @@ index 30ac56c..1b3b57c 100644
 +workflow-support
 ```
 
-</div>Por último, para actualizar estos cambios en GitHub ejecutamos el siguiente comando:
+Por último, para actualizar estos cambios en GitHub ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ git push origin master --tag
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
@@ -132,41 +135,50 @@ To https://github.com/aprenderdevops/docker-jenkins.git
 
 ```
 
-</div>En el repositorio de GitHub tendremos una nueva release etiquetada con el tag 1.5.
+En el repositorio de GitHub tendremos una nueva release etiquetada con el tag 1.5.
 
-<div class="wp-block-image"><figure class="aligncenter">[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-3-1024x456.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-3.png)</figure></div>Estos cambios en GitHub desencadenarán dos builds en Docker Hub, uno etiquetado como latest y otro como 1.5.
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-3-1024x456.png)](/assets/images/2018/02/builds-dockerhub-tags-3.png)
+{: .aligncenter}
 
-<div class="wp-block-image"><figure class="aligncenter">[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-4-1024x590.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-4.png)</figure></div>Pasados unos minutos ambas imágenes estarán disponibles en Docker Hub y podremos usarlas para ejecutar Jenkins con el plugin Blue Ocean.
+Estos cambios en GitHub desencadenarán dos builds en Docker Hub, uno etiquetado como latest y otro como 1.5.
 
-<div class="wp-block-image"><figure class="aligncenter">[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-5-1024x390.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-5.png)</figure></div>### Arranque del contenedor con la nueva imagen Docker
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-4-1024x590.png)](/assets/images/2018/02/builds-dockerhub-tags-4.png)
+{: .aligncenter}
+
+Pasados unos minutos ambas imágenes estarán disponibles en Docker Hub y podremos usarlas para ejecutar Jenkins con el plugin Blue Ocean.
+
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-5-1024x390.png)](/assets/images/2018/02/builds-dockerhub-tags-5.png)
+{: .aligncenter}
+
+### Arranque del contenedor con la nueva imagen Docker
 
 Para comprobar que todo ha ido bien, descargamos a local la nueva imagen Docker construida. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ docker pull aprenderdevops/jenkins
 ```
 
-</div>Una vez descargada la nueva imagen Docker, arrancamos el contenedor ejecutando el siguiente comando:
+Una vez descargada la nueva imagen Docker, arrancamos el contenedor ejecutando el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ docker-compose up -d
 Creating volume "dockerjenkins_jenkins_home" with default driver
 Creating dockerjenkins_master_1 ... done
 ```
 
-</div>Una vez arrancado el contenedor, abrimos un navegador y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
+Una vez arrancado el contenedor, abrimos un navegador y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
 
 Para obtener la contraseña del usuario admin de Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ docker exec -it dockerjenkins_master_1 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-</div>Si todo ha ido bien, en la parte izquierda de la consola de Jenkins se mostrará el icono de acceso a la interfaz Blue Ocean.
+Si todo ha ido bien, en la parte izquierda de la consola de Jenkins se mostrará el icono de acceso a la interfaz Blue Ocean.
 
-<div class="wp-block-image"><figure class="aligncenter">[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-6-1024x625.png)](http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-6.png)</figure></div>## Código fuente del laboratorio
+[![Configuración de builds automatizados en Docker Hub utilizando tags de Git](/assets/images/2018/02/builds-dockerhub-tags-6-1024x625.png)](/assets/images/2018/02/builds-dockerhub-tags-6.png)
+{: .aligncenter}
+
+## Código fuente del laboratorio
 
 Podéis descargar o clonar de GitHub el código fuente completo de este laboratorio de <https://github.com/aprenderdevops/docker-jenkins>.

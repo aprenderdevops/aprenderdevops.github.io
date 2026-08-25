@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=200'
 permalink: /razones-para-adoptar-devops/
-image: /wp-content/uploads/2018/01/razones-para-adoptar-devops.png
+image: /assets/images/2018/01/razones-para-adoptar-devops.png
 categories:
     - Otros
 tags:

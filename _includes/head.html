@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% if page.title %}
+<title>{{ page.title | strip_html }} - {{ site.name }}</title>
+<meta name="description" content="{{ page.title | strip_html }}">
+{% else %}
+<title>{{ site.name }} - {{ site.description }}</title>
+<meta name="description" content="{{ site.description }}">
+{% endif %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,600">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+<link rel="icon" href="/assets/images/2017/10/cropped-favicon_aprenderDevOps-32x32.png" sizes="32x32">
+<link rel="icon" href="/assets/images/2017/10/cropped-favicon_aprenderDevOps-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/images/2017/10/cropped-favicon_aprenderDevOps-180x180.png">
+<meta name="msapplication-TileImage" content="/assets/images/2017/10/cropped-favicon_aprenderDevOps-270x270.png">

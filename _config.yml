@@ -2,8 +2,23 @@ url: 'https://aprenderdevops.com'
 name: aprenderDevOps
 description: 'Para profesionales TI interesados en DevOps'
 
+# El tema vive en este repo (_layouts/_includes/assets), no en un gem. Hay que
+# declararlo vacío explícitamente porque el gem github-pages, si no, activa
+# jekyll-theme-primer por defecto, cuyo assets/css/style.scss se genera en la
+# misma ruta que nuestro assets/css/style.css y lo pisa (ver CLAUDE.md).
+theme:
+
+plugins:
+  - jekyll-paginate
+
+paginate: 3
+paginate_path: '/page/:num/'
+
 exclude:
   - CLAUDE.md
+  - README.md
   - Gemfile
   - Gemfile.lock
   - vendor
+  - hooks
+  - scripts

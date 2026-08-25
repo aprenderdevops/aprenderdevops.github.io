@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+{% include head.html %}
+</head>
+<body class="custom-background custom-header header-image full-width-content">
+<div class="site-container">
+	{% include site-header.html %}
+	{% include nav-primary.html %}
+	<div class="site-inner">
+		<div class="content-sidebar-wrap">
+			<main class="content">
+				{{ content }}
+			</main>
+		</div>
+	</div>
+	<footer class="site-footer">
+		<div class="wrap">
+			{% include nav-secondary.html %}
+			<p>Copyright &#169; {{ site.time | date: '%Y' }} <a href="/">{{ site.name }}</a></p>
+		</div>
+	</footer>
+</div>
+<script src="{{ '/assets/js/responsive-menu.js' | relative_url }}"></script>
+</body>
+</html>

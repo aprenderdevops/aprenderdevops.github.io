@@ -1,0 +1,15 @@
+{% comment %}
+  Tarjeta de entrada para listados (home.html y category.html).
+  Uso: {% include entry.html post=post %}
+{% endcomment %}
+<article class="entry" aria-label="{{ include.post.title | strip_html }}">
+	{% include entry-header.html post=include.post tipo="listado" %}
+	<div class="entry-content">
+		{% if include.post.image %}
+		<div class="featured-image"><img src="{{ include.post.image }}" alt="{{ include.post.title | strip_html }}" class="entry-image"></div>
+		{% endif %}
+		{{ include.post.excerpt }}
+		<a href="{{ include.post.url }}" class="more-link">[Leer más&#8230;]</a>
+	</div>
+	{% include entry-footer.html post=include.post %}
+</article>

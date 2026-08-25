@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{% assign entradas_tag = site.tags[page.tag_name] %}
+{% assign slug_tag = page.tag_name | slugify: "latin" %}
+{% assign base = "/tag/" | append: slug_tag %}
+{% assign pagina_actual = page.pagina | default: 1 %}
+{% assign por_pagina = site.paginate %}
+{% assign total_paginas = entradas_tag.size | plus: por_pagina | minus: 1 | divided_by: por_pagina %}
+{% assign offset = pagina_actual | minus: 1 | times: por_pagina %}
+{% assign entradas_pagina = entradas_tag | slice: offset, por_pagina %}
+<header class="archive-description">
+	<h1 class="archive-title">Etiqueta: {{ page.title }}</h1>
+</header>
+{% for post in entradas_pagina %}
+{% include entry.html post=post %}
+{% endfor %}
+{% include archivo-paginacion.html pagina_actual=pagina_actual total_paginas=total_paginas base=base %}

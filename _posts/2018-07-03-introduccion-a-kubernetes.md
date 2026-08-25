@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=292'
 permalink: /introduccion-a-kubernetes/
-image: /wp-content/uploads/2018/07/kubernetes.png
+image: /assets/images/2018/07/kubernetes.png
 categories:
     - Contenedores
 tags:
@@ -43,7 +43,10 @@ Existen dos formas de seleccionar objetos mediante selectors:
     Identifica los objetos en el entorno de producción que no estén en la capa de frontend. El separador coma actúa como operador AND.
 - Requisito basado en conjunto. Filtran claves según un conjunto de valores. Por ejemplo:  
     ```
-    environment in (production, qa)<br></br>tier notin (frontend, backend)<br></br>partition<br></br>!partition
+    environment in (production, qa)
+    tier notin (frontend, backend)
+    partition
+    !partition
     ```
     
     El primer ejemplo selecciona todos los recursos con clave igual a entorno y valor igual a producción o qa. El segundo ejemplo selecciona todos los recursos con clave igual a tier y valores distintos de frontend y backend, y todos los recursos sin etiquetas con la clave tier. El tercer ejemplo selecciona todos los recursos que tengan una etiqueta con clave partition El cuarto ejemplo selecciona todos los recursos que no tengan una etiqueta con clave partition. De manera similar al requisito basado en igualdad, el separador de coma actúa como operador AND.

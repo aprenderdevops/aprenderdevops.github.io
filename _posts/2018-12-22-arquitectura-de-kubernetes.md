@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=382'
 permalink: /arquitectura-de-kubernetes/
-image: /wp-content/uploads/2018/07/kubernetes.png
+image: /assets/images/2018/07/kubernetes.png
 categories:
     - Contenedores
 tags:
@@ -17,7 +17,10 @@ Tras la entrada [Introducción a Kubernetes](https://aprenderdevops.com/introduc
 
 ## Nodos
 
-<div class="wp-block-image"><figure class="aligncenter">[![Arquitectura de Kubernetes](http://aprenderdevops.com/wp-content/uploads/2018/12/arquitectura-kubernetes-1.png)](http://aprenderdevops.com/wp-content/uploads/2018/12/arquitectura-kubernetes-1.png)</figure></div>Los nodos en Kubernetes son las máquinas que componen el clúster Kubernetes. Estas máquinas pueden ser físicas o virtuales, y estar desplegadas on premise o en la nube. A su vez los nodos pueden ser nodos master o nodos worker.
+[![Arquitectura de Kubernetes](/assets/images/2018/12/arquitectura-kubernetes-1.png)](/assets/images/2018/12/arquitectura-kubernetes-1.png)
+{: .aligncenter}
+
+Los nodos en Kubernetes son las máquinas que componen el clúster Kubernetes. Estas máquinas pueden ser físicas o virtuales, y estar desplegadas on premise o en la nube. A su vez los nodos pueden ser nodos master o nodos worker.
 
 ### Nodos master
 
@@ -35,7 +38,10 @@ Cada nodo worker puede ejecutar múltiples pods. Es muy recomendable tener vario
 
 ## Componentes de un nodo master
 
-<div class="wp-block-image"><figure class="aligncenter">[![Arquitectura de Kubernetes](http://aprenderdevops.com/wp-content/uploads/2018/12/arquitectura-kubernetes-2.png)](http://aprenderdevops.com/wp-content/uploads/2018/12/arquitectura-kubernetes-2.png)</figure></div>Los distintos componentes de un nodo master se pueden ejecutar en cualquier máquina del clúster, sin embargo, por simplicidad, las secuencias de comandos de configuración inician normalmente todos los componentes del nodo master en la misma máquina. Además, en esa máquina no se ejecutan contenedores de usuario.Estos componentes de un nodo master se detallan a continuación.
+[![Arquitectura de Kubernetes](/assets/images/2018/12/arquitectura-kubernetes-2.png)](/assets/images/2018/12/arquitectura-kubernetes-2.png)
+{: .aligncenter}
+
+Los distintos componentes de un nodo master se pueden ejecutar en cualquier máquina del clúster, sin embargo, por simplicidad, las secuencias de comandos de configuración inician normalmente todos los componentes del nodo master en la misma máquina. Además, en esa máquina no se ejecutan contenedores de usuario.Estos componentes de un nodo master se detallan a continuación.
 
 ### API server
 
@@ -68,7 +74,10 @@ Algunos ejemplos de datos almacenados por Kubernetes en etcd son los trabajos qu
 
 ## Componentes de un nodo worker
 
-<div class="wp-block-image"><figure class="aligncenter">[![Arquitectura de Kubernetes](http://aprenderdevops.com/wp-content/uploads/2018/12/arquitectura-kubernetes-3.png)](http://aprenderdevops.com/wp-content/uploads/2018/12/arquitectura-kubernetes-3.png)</figure></div>Cada nodo worker ejecuta los siguientes componentes que se detallan a continuación.
+[![Arquitectura de Kubernetes](/assets/images/2018/12/arquitectura-kubernetes-3.png)](/assets/images/2018/12/arquitectura-kubernetes-3.png)
+{: .aligncenter}
+
+Cada nodo worker ejecuta los siguientes componentes que se detallan a continuación.
 
 ### kubelet
 

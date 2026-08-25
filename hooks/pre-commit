@@ -1,0 +1,36 @@
+#!/bin/sh
+# Hook casero (ver CLAUDE.md). git no versiona .git/hooks/, así que este
+# fichero vive en el repo como uno más y cada clon debe activarlo una vez:
+#
+#   git config core.hooksPath hooks
+#
+# Regenera tag/*.md, author/*.md y las páginas de paginación de categoría/
+# etiqueta/autor (tag/*-pageN.md, author/*-pageN.md, category/*-pageN.md)
+# antes de cualquier commit que toque _posts/, y añade los cambios
+# resultantes al propio commit, para que la entrada y sus páginas de
+# archivo viajen siempre juntas en un solo commit.
+#
+# Es una comodidad, no una garantía: si este hook no está activado (por
+# ejemplo, en un clon nuevo donde aún no se ha ejecutado el comando de
+# arriba), el paso "Verificar que las páginas de etiqueta, autor y
+# paginación están al día" del workflow de despliegue lo detecta igualmente
+# y bloquea el despliegue.
+
+# No hacer nada si el commit no toca _posts/.
+if ! git diff --cached --name-only | grep -q '^_posts/'; then
+	exit 0
+fi
+
+if ! command -v bundle >/dev/null 2>&1; then
+	echo "aviso (hook pre-commit): bundler no está instalado, no se han podido regenerar las páginas de etiqueta, autor ni paginación" >&2
+	exit 0
+fi
+
+bundle exec ruby scripts/generar_tags.rb
+bundle exec ruby scripts/generar_autores.rb
+bundle exec ruby scripts/generar_paginas_archivo.rb
+
+if [ -n "$(git status --porcelain -- tag/ author/ category/)" ]; then
+	git add -A -- tag/ author/ category/
+	echo "hook pre-commit: páginas de etiqueta, autor y paginación regeneradas y añadidas a este commit"
+fi

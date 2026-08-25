@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'https://aprenderdevops.com/?p=70'
 permalink: /que-es-devops/
-image: /wp-content/uploads/2017/12/que-es-devops.png
+image: /assets/images/2017/12/que-es-devops.png
 categories:
     - Otros
 tags:

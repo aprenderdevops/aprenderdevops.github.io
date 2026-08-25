@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=101'
 permalink: /instalacion-gitlab-ansible-una-maquina-centos-7-provisionada-vagrant/
-image: /wp-content/uploads/2017/12/gitlab-ansible.png
+image: /assets/images/2017/12/gitlab-ansible.png
 categories:
     - 'Infraestructura como código'
 tags:
@@ -47,13 +47,13 @@ A continuación, vamos a ver los pasos necesarios para hacer el laboratorio.
 
 En el directorio en el que vamos a ubicar el Vagrantfile ejecutamos el siguiente comando:
 
-```
+```console
 $ vagrant init -m centos/7
 ```
 
 Esto nos genera el siguiente Vagrantfile minimo:
 
-```
+```ruby
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
 end
@@ -61,7 +61,7 @@ end
 
 Lo editamos para añadir más configuración. El Vagrantfile definitivo debería ser muy similar al siguiente:
 
-```
+{% highlight ruby linenos %}
 Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
     config.vm.boot_timeout = 120
@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "private_network", ip: "192.168.107.20"
     config.vm.network "forwarded_port", host: 8080, guest: 80, autocorrect: true
 end
-```
+{% endhighlight %}
 
 A continuación, vamos a explicar para qué sirven las líneas más relevantes de este Vagrantfile:
 
@@ -98,7 +98,7 @@ A continuación, vamos a explicar para qué sirven las líneas más relevantes d
 
 La estructura de ficheros del proyecto es la siguiente:
 
-```
+```text
 README.md
 Vagrantfile
 provision/roles/gitlab/vars/RedHat.yml
@@ -124,7 +124,7 @@ Además de este fichero, tenemos dos subdirectorios:
 
 En el fichero all, dentro del directorio hosts, se incluye el inventario de máquinas en las que se va a instalar GitLab. En este caso sólo contiene la máquina virtual creada con Vagrant. Por lo tanto, la dirección IP debe coincidir con la dirección IP privada que hayamos definido en el Vagrantfile.
 
-```
+```text
 [gitlab]
 192.168.107.20
 ```
@@ -133,7 +133,7 @@ En el fichero all, dentro del directorio hosts, se incluye el inventario de máq
 
 Como ya hemos comentado, el fichero install.yml contiene el playbook invocado desde Vagrant para la instalación y configuración de GitLab. Este fichero, además de indicar el inventario sobre el que se aplicarán las tareas de automatización, relaciona el tag referenciado en el Vagrantfile con el role que se va a ejecutar. En este caso, tanto el tag como el role se llaman gitlab.
 
-```
+```yaml
 ---
 - hosts: all
   
@@ -155,14 +155,14 @@ Para probarlo con otro sistema operativo, sólo habría que sustituir la cadena 
 
 Debian.yml
 
-```
+```yaml
 ---
 gitlab_repository_installation_script_url: https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.deb.sh
 ```
 
 RedHat.yml
 
-```
+```yaml
 ---
 gitlab_repository_installation_script_url: https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.rpm.sh
 ```
@@ -176,7 +176,7 @@ Para instalar GitLab EE (Enterprise Edition) en lugar de la edición CE, sólo h
 El directorio provision/roles/gitlab/defaults contiene un fichero main.yml en el que se definen las distintas variables que se van a utilizar en el código del role, como la URL de acceso a GitLab, la edición que se va a instalar, el directorio que contiene los repositorios Git, y otras muchas variables.
 
 {% raw %}
-```
+```yaml
 ---
 # Configuración general
 gitlab_external_url: "http://localhost/"
@@ -238,8 +238,7 @@ gitlab_email_reply_to: "gitlab@example.com"
 
 El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el que se detallan las tareas de instalación y configuración de GitLab.
 
-{% raw %}
-```
+{% highlight yaml linenos %}{% raw %}
 ---
 - name: Incluir variables específicas del sistema operativo
   include_vars: "{{ ansible_os_family }}.yml"
@@ -304,12 +303,11 @@ El directorio provision/roles/gitlab/tasks contiene un fichero main.yml en el qu
     group: root
     mode: 0600
   notify: Reiniciar GitLab
-```
-{% endraw %}
+{% endraw %}{% endhighlight %}
 
 Aunque el código es bastante explicativo, vamos a ver para que sirven algunas de las líneas de este fichero:
 
-- En la línea 3 se incluyen las variables contenidas en el fichero correspondiente a la familia de sistema operativo en el que se ejecuta el playbook Ansible. Para ello, se hace uso de la variable {{ ansible\_os\_family }} que nos indica la familia del sistema operativo en el que se está ejecutando el playbook. Para CentOS 7 el valor de esta variable es «RedHat», por lo que en este caso se cargan las variables contenidas en el fichero RedHat.yml.
+- En la línea 3 se incluyen las variables contenidas en el fichero correspondiente a la familia de sistema operativo en el que se ejecuta el playbook Ansible. Para ello, se hace uso de la variable {% raw %}{{ ansible_os_family }}{% endraw %} que nos indica la familia del sistema operativo en el que se está ejecutando el playbook. Para CentOS 7 el valor de esta variable es «RedHat», por lo que en este caso se cargan las variables contenidas en el fichero RedHat.yml.
 - De las líneas 5 a la 11 se comprueba si ya existe el fichero de configuración de GitLab y si GitLab ya está instalado.
 - De las líneas 13 a la 19 se instalan los paquetes de sistema operativo necesarios para el correcto funcionamiento de GitLab.
 - De las líneas 21 a la 30 se descarga el script de instalación del repositorio de GitLab, lo deja en el directorio /tmp y lo ejecuta para instalar el repositorio.
@@ -324,7 +322,7 @@ A continuación, podéis ver el código del template y el del handler para el re
 ### Template gitlab.rb.j2
 
 {% raw %}
-```
+```ruby
 # URL a través de la cual se accederá a GitLab
 external_url "{{ gitlab_external_url }}"
 
@@ -401,7 +399,7 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
 
 ### Handler
 
-```
+```yaml
 ---
 - name: Reiniciar GitLab
   command: gitlab-ctl reconfigure
@@ -413,7 +411,7 @@ nginx['ssl_client_certificate'] = "{{ gitlab_nginx_ssl_client_certificate }}"
 
 Para crear y arrancar la máquina virtual y lanzar la instalación de GitLab ejecutamos el siguiente comando:
 
-```
+```console
 $ vagrant up
 ```
 

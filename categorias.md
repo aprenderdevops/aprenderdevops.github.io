@@ -5,6 +5,7 @@ date: '2017-10-07T23:10:48+02:00'
 author: Arturo
 layout: page
 guid: 'http://aprenderdevops.com/?page_id=32'
+permalink: /categorias/
 ---
 
 [Aseguramiento de la calidad](https://aprenderdevops.com/category/aseguramiento-de-la-calidad/). El aseguramiento de la calidad del software debe ser una de las prácticas esenciales dentro de las organizaciones TI de alto rendimiento que [adoptan un enfoque DevOps](https://aprenderdevops.com/razones-para-adoptar-devops/).

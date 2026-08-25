@@ -6,7 +6,7 @@ author: Arturo
 layout: post
 guid: 'http://aprenderdevops.com/?p=262'
 permalink: /instalacion-de-sonarqube-con-docker/
-image: /wp-content/uploads/2018/02/sonarqube-docker.png
+image: /assets/images/2018/02/sonarqube-docker.png
 categories:
     - 'Aseguramiento de la calidad'
     - Contenedores
@@ -59,8 +59,7 @@ Para facilitar la instalación de SonarQube en contenedores Docker vamos a utili
 
 A continuación, podéis ver el fichero docker-compose.yml que describe cómo se van a ejecutar los contenedores.
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```yaml
 version: '2'
 
 services:
@@ -104,19 +103,21 @@ volumes:
   postgresql_data:
 ```
 
-</div>Para arrancar los contenedores ejecutamos el siguiente comando:
+Para arrancar los contenedores ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code ">```
-
+```console
 $ docker-compose up -d
 ```
 
-</div>## Acceso a la consola de SonarQube
+## Acceso a la consola de SonarQube
 
 Una vez arrancados los contenedores, abrimos un navegador web y accedemos a http://localhost:9000 para acceder a la consola de SonarQube.
 
 El usuario y la contraseña predeterminados son admin y admin respectivamente. La primera ver que accedamos nos pedirá que cambiemos la contraseña.
 
-<figure class="wp-block-image size-large">[![Instalación de SonarQube con Docker](https://aprenderdevops.com/wp-content/uploads/2021/10/consola-sonarqube-1024x585.png)](https://aprenderdevops.com/wp-content/uploads/2021/10/consola-sonarqube.png)</figure>## Código fuente del laboratorio
+[![Instalación de SonarQube con Docker](/assets/images/2021/10/consola-sonarqube-1024x585.png)](/assets/images/2021/10/consola-sonarqube.png)
+{: .aligncenter}
+
+## Código fuente del laboratorio
 
 Podéis descargar o clonar el código fuente completo de este laboratorio de GitHub de <https://github.com/aprenderdevops/docker-sonarqube>.

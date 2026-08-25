@@ -28,6 +28,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Generate tag pages
+        run: bundle exec ruby scripts/generar_tags.rb
+      - name: Generate author pages
+        run: bundle exec ruby scripts/generar_autores.rb
+      - name: Generate archive pagination pages
+        run: bundle exec ruby scripts/generar_paginas_archivo.rb
+      - name: Verify tag, author and archive pagination pages are up to date
+        run: |
+          if [ -n "$(git status --porcelain -- tag/ author/ category/)" ]; then
+            echo "::error::Tag pages (tag/*.md), author pages (author/*.md) or archive pagination pages (tag/*-pageN.md, author/*-pageN.md, category/*-pageN.md) are out of sync with _posts/. Run 'bundle exec ruby scripts/generar_tags.rb', 'bundle exec ruby scripts/generar_autores.rb' and 'bundle exec ruby scripts/generar_paginas_archivo.rb' locally, review the diff, and commit the changes in tag/, author/ and category/ before pushing."
+            git status --porcelain -- tag/ author/ category/
+            exit 1
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll

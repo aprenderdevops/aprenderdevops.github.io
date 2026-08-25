@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{% for post in paginator.posts %}
+{% include entry.html post=post %}
+{% endfor %}
+
+<div class="archive-pagination pagination">
+	<ul>
+		{% if paginator.previous_page %}
+		<li class="pagination-previous"><a href="{{ paginator.previous_page_path | relative_url }}">&#171; Página anterior</a></li>
+		{% endif %}
+		{% for pagina in (1..paginator.total_pages) %}
+		{% if pagina == 1 %}{% assign url_pagina = "/" %}{% else %}{% assign url_pagina = "/page/" | append: pagina | append: "/" %}{% endif %}
+		{% if pagina == paginator.page %}
+		<li class="active"><a href="{{ url_pagina }}" aria-current="page">{{ pagina }}</a></li>
+		{% else %}
+		<li><a href="{{ url_pagina }}">{{ pagina }}</a></li>
+		{% endif %}
+		{% endfor %}
+		{% if paginator.next_page %}
+		<li class="pagination-next"><a href="{{ paginator.next_page_path | relative_url }}">Página siguiente &#187;</a></li>
+		{% endif %}
+	</ul>
+</div>
