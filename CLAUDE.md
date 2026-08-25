@@ -98,6 +98,7 @@ A diferencia de WordPress (donde el nombre del autor bajo cada entrada no enlaza
 - Las entradas nuevas van en `_posts/`, nombradas `YYYY-MM-DD-slug.md`, con `layout: post` y un `permalink: /slug/` explícito.
 - Mantén el front matter entre comillas simples cuando el valor contenga tildes, dos puntos o espacios (sigue el estilo existente).
 - La sintaxis de plantillas Liquid que aparezca literalmente en el cuerpo de un post (por ejemplo, fragmentos de código que muestren `{% raw %}{% ... %}{% endraw %}`) debe envolverse en `{% raw %}...{% endraw %}` para evitar que se rompa el build de Jekyll (ver el historial de commits como precedente).
+- **Todo bloque de código lleva el lenguaje en los backticks de apertura** (` ```yaml `, ` ```ruby `...); sin él, Rouge no colorea nada. La taxonomía que usa el sitio, heredada del `brush:` que declaraba el plugin SyntaxHighlighter en WordPress: `console` para sesiones de terminal con prompt `$` (es la etiqueta mayoritaria; no uses `bash` para eso, que no colorea el prompt), `bash` para fragmentos de shell sin prompt, `text` para listados sin lenguaje (árboles de ficheros, inventarios de Ansible), y `yaml`/`ruby`/`docker`/`python`/`ini`/`nginx` para lo demás. Al elegir la etiqueta, comprueba que Rouge no deja tokens `.err` (se pintan en rojo oscuro, `#960050`, y parecen un error): `grep -c 'class="err"' _site/<permalink>/index.html` debe dar 0.
 
 ## Convenciones de commit
 
