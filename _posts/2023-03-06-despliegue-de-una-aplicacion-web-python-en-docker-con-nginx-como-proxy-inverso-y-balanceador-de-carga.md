@@ -284,5 +284,3 @@ Podéis ver la ejecución de estas instrucciones en el siguiente vídeo:
 <script async="" id="asciicast-zAT3BEouW0ZgSX285CmNPLUkp" src="https://asciinema.org/a/zAT3BEouW0ZgSX285CmNPLUkp.js"></script>## Código fuente del laboratorio
 
 Tenéis el código fuente de este laboratorio en <https://github.com/aprenderdevops/docker-uwsgi-nginx>.
-
-</body></html>
