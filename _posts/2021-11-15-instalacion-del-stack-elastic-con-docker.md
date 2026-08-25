@@ -171,7 +171,10 @@ Una vez arrancados los tres contenedores del stack Elastic, para comprobar si el
 
 Abrimos un navegador y accedemos a http://localhost:9200. Deberíamos ver una salida similar a la mostrada en la siguiente captura de pantalla.
 
-<figure><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png" alt="Instalación del stack Elastic con Docker"></a></figure>### Logstash
+[![Instalación del stack Elastic con Docker](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png)](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-2.png)
+{: .aligncenter}
+
+### Logstash
 
 A continuación, se muestra el fichero [logstash/pipeline/logstash.conf](https://github.com/aprenderdevops/docker-elastic/blob/main/logstash/pipeline/logstash.conf), que contiene la configuración del pipeline que nos va a permitir comprobar el funcionamiento de Logstash.
 
@@ -276,6 +279,9 @@ La salida de este comando deberá mostrar el primer evento de tipo heartbeat gen
 
 Para comprobar el correcto funcionamiento de Kibana, abrimos un navegador y accedemos a http://localhost:5601. Esto debería abrir la consola de Kibana, tal y como se muestra en la siguiente captura de pantalla.
 
-<figure><a href="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png"><img src="https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png" alt="Instalación del stack Elastic con Docker"></a></figure>## Código fuente del laboratorio
+[![Instalación del stack Elastic con Docker](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3-1024x788.png)](https://aprenderdevops.com/wp-content/uploads/2021/11/elastic-docker-3.png)
+{: .aligncenter}
+
+## Código fuente del laboratorio
 
 Podéis descargar o clonar el código fuente completo de este laboratorio de GitHub de <https://github.com/aprenderdevops/docker-elastic>.

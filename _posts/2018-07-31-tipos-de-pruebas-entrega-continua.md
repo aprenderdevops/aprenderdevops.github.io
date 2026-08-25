@@ -32,7 +32,7 @@ Invertir en la automatización de pruebas es costoso al principio, pero una vez 
 
 A continuación, vamos a ver los distintos tipos de pruebas que existen y para que sirve cada uno de ellos.
 
-<figure class="wp-block-table" markdown="1">| **Tipo de prueba** | **Para confirmar que** |
+| **Tipo de prueba** | **Para confirmar que** |
 |---|---|
 | Pruebas unitarias | Las funciones y clases funcionan como se espera bajo una variedad de entradas. |
 | Pruebas de integración | Los módulos integrados funcionan en conjunto y junto con la infraestructura, como colas de mensajes y bases de datos. En entornos de microservicios las pruebas de integración de todos los componentes desplegados son cada vez más importantes para asegurar el correcto funcionamiento del software en su conjunto. |
@@ -43,7 +43,7 @@ A continuación, vamos a ver los distintos tipos de pruebas que existen y para q
 | Pruebas de humo | El estado y la integridad de un entorno recién provisionado son válidos. |
 | Pruebas de calidad | El código de la aplicación es de alta calidad. Esto se lleva a cabo mediante técnicas como el análisis estático de código que permiten validar el cumplimiento de guías de estilo o la cobertura del código. |
 
-</figure>## Buenas practicas
+## Buenas practicas
 
 Estas son algunas buenas prácticas que se deben tener en cuenta a la hora de mantener una batería de pruebas:
 

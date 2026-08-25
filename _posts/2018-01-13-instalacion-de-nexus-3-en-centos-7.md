@@ -174,4 +174,7 @@ Este comando iniciará el servicio nexus en el puerto 8081.
 
 Para entrar en la consola de Nexus, abrimos un navegador web y accedemos a http://localhost:8081.
 
-<figure class="aligncenter"><a href="http://aprenderdevops.com/wp-content/uploads/2018/01/consola-nexus.png"><img src="http://aprenderdevops.com/wp-content/uploads/2018/01/consola-nexus.png" alt="Consola Nexus Repository OSS 3"></a></figure>Para iniciar sesión en la consola, lo que nos permitirá administrar Nexus 3, pulsamos en «Sign in» en la esquina superior derecha de la pantalla. Podemos utilizar el usuario y la contraseña predeterminados, que son admin y admin123 respectivamente.
+[![Consola Nexus Repository OSS 3](http://aprenderdevops.com/wp-content/uploads/2018/01/consola-nexus.png)](http://aprenderdevops.com/wp-content/uploads/2018/01/consola-nexus.png)
+{: .aligncenter}
+
+Para iniciar sesión en la consola, lo que nos permitirá administrar Nexus 3, pulsamos en «Sign in» en la esquina superior derecha de la pantalla. Podemos utilizar el usuario y la contraseña predeterminados, que son admin y admin123 respectivamente.
