@@ -66,8 +66,7 @@ Para añadir un nuevo plugin Jenkins a la imagen Docker únicamente tenemos que 
 
 Una vez realizada la modificación en el código de nuestro proyecto, hacemos un commit de los cambios de nuestro código y le asignamos un tag. Esto lo hacemos ejecutando los comandos que detallo a continuación:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ git add plugins.txt
 $ git commit -m "Se añade el plugin blueocean en plugins.txt"
 [master c38387a] Se añade el plugin blueocean en plugins.txt
@@ -79,8 +78,7 @@ $ git tag 1.5 -m "Versión 1.5. Se añade el plugin Blue Ocean."
 
 Podemos obtener información sobre un determinado tag ejecutando un comando git show como el siguiente:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ git show 1.5
 tag 1.5
 Tagger: aprenderdevops <jarfernandez@aprenderdevops.com>
@@ -117,8 +115,7 @@ index 30ac56c..1b3b57c 100644
 
 </div>Por último, para actualizar estos cambios en GitHub ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ git push origin master --tag
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
@@ -142,15 +139,13 @@ To https://github.com/aprenderdevops/docker-jenkins.git
 
 Para comprobar que todo ha ido bien, descargamos a local la nueva imagen Docker construida. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker pull aprenderdevops/jenkins
 ```
 
 </div>Una vez descargada la nueva imagen Docker, arrancamos el contenedor ejecutando el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose up -d
 Creating volume "dockerjenkins_jenkins_home" with default driver
 Creating dockerjenkins_master_1 ... done
@@ -160,8 +155,7 @@ Creating dockerjenkins_master_1 ... done
 
 Para obtener la contraseña del usuario admin de Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker exec -it dockerjenkins_master_1 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 

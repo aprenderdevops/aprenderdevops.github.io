@@ -61,15 +61,13 @@ Para instalar Nexus 3, accedemos a la máquina CentOS 7 y realizamos los pasos q
 
 Actualizamos los paquetes del sistema.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo yum update -y
 ```
 
 </div>Instalamos el paquete wget, necesario para poder descargar el fichero de instalación de Nexus.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo yum install wget -y
 ```
 
@@ -77,22 +75,19 @@ $ sudo yum install wget -y
 
 Para instalar Oracle Java 8, lo primero que tenemos que hacer es descargar el fichero RPM de instalación.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http://www.oracle.com/oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.rpm"
 ```
 
 </div>Una vez descargado el fichero RPM, procedemos a la instalación mediante el comando yum localinstall.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo yum localinstall jdk-8u152-linux-x64.rpm -y
 ```
 
 </div>Una vez instalado Oracle Java 8, borramos el fichero RPM.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ rm jdk-8u152-linux-x64.rpm
 ```
 
@@ -100,36 +95,31 @@ $ rm jdk-8u152-linux-x64.rpm
 
 Cambiamos al directorio /opt.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ cd /opt
 ```
 
 </div>Descargamos la última versión de Sonatype Nexus Repository OSS 3.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
 ```
 
 </div>Descomprimimos el fichero descargado.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo tar xvf latest-unix.tar.gz
 ```
 
 </div>Una vez descomprimido el fichero de instalación, podemos borrarlo para liberar espacio en disco.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo rm latest-unix.tar.gz
 ```
 
 </div>Establecemos un enlace simbólico al directorio de instalación de Nexus.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo ln -s nexus-3.* nexus
 ```
 
@@ -137,22 +127,19 @@ $ sudo ln -s nexus-3.* nexus
 
 Por motivos de seguridad, no se recomienda ejecutar Nexus con usuario root. Creamos un usuario específico para ejecutar Nexus.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo adduser nexus
 ```
 
 </div>Cambiamos el propietario de los ficheros de instalación de Nexus al nuevo usuario que hemos creado.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```bash
 sudo chown -R nexus:nexus nexus* sonatype-work
 ```
 
 </div>Editamos el fichero de configuración /opt/nexus/bin/nexus.rc, descomentamos el parámetro run\_as\_user y le ponemos como valor el nombre del nuevo usuario que hemos creado para ejecutar Nexus.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```bash
 run_as_user="nexus"
 ```
 
@@ -162,15 +149,13 @@ Para poder ejecutar Nexus como servicio Linux seguimos los siguientes pasos.
 
 Creamos un enlace simbólico para el script de servicio nexus en la carpeta /etc/init.d.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 ```
 
 </div>Ejecutamos los siguientes comandos para añadir el servicio nexus al arranque.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo chkconfig --add nexus
 $ sudo chkconfig --levels 345 nexus on
 ```
@@ -179,8 +164,7 @@ $ sudo chkconfig --levels 345 nexus on
 
 Para iniciar el servicio de Nexus, ejecutamos el siguiente comando.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ sudo service nexus start
 ```
 

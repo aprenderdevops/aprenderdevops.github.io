@@ -26,8 +26,7 @@ El funcionamiento sería exactamente el mismo si la aplicación fuera más compl
 
 ### webapp.py
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```python
 from flask import Flask
 
 app = Flask(__name__)
@@ -64,8 +63,7 @@ Como ya hemos comentado, para poder ejecutar nuestra aplicación web Python nece
 
 ### Dockerfile
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```docker
 FROM python:3.7.3
 LABEL maintainer="Jose Arturo Fernandez <jarfernandez@aprenderdevops.com>"
 
@@ -119,8 +117,7 @@ ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 
 ### requirements.txt
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```text
 Click==7.0
 Flask==1.1.1
 itsdangerous==1.1.0
@@ -131,15 +128,13 @@ Werkzeug==0.15.5
 
 </div>El fichero requirements.txt contiene las librerías Python necesarias para ejecutar la aplicación. Este fichero se obtiene con el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ pip freeze > requirements.txt
 ```
 
 </div>### uwsgi.ini
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```ini
 [uwsgi]
 http = 0.0.0.0:$(UWSGI_HTTP_PORT)
 module = $(UWSGI_APP):app
@@ -153,8 +148,7 @@ En el caso del puerto, se especifica que se obtenga el valor de la variable de e
 
 El valor por defecto del puerto se puede cambiar al construir la imagen con docker build especificando otro valor. Por ejemplo, si queremos que el valor por defecto del puerto para la imagen sea el 9000, ejecutaremos el siguiente comando para construir la imagen:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker build --build-arg UWSGI_HTTP_PORT=9000 -t aprenderdevops/uwsgi .
 ```
 
@@ -170,15 +164,13 @@ La utilización de variables de entorno que se pasan al fichero de configuració
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker build -t aprenderdevops/uwsgi .
 ```
 
 </div>Para arrancar el contenedor ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker run -d -p 8080:8000 --restart unless-stopped -v $(pwd)/WebApp:/WebApp aprenderdevops/uwsgi
 ```
 

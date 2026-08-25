@@ -35,8 +35,7 @@ Vamos a utilizar la misma aplicación web Python desarrollada con [Flask](http:/
 
 ### webapp.py
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```python
 from flask import Flask
 import socket
 
@@ -74,8 +73,7 @@ Al igual que en la primera entrada, para poder ejecutar nuestra aplicación web 
 
 ### Dockerfile
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```docker
 FROM python:3.11.2
 LABEL maintainer="Jose Arturo Fernandez <jarfernandez@aprenderdevops.com>"
 
@@ -113,8 +111,7 @@ ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 
 </div>### requirements.txt
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```text
 Click==8.1.3
 Flask==2.2.3
 itsdangerous==2.1.2
@@ -125,15 +122,13 @@ Werkzeug==2.2.3
 
 </div>El fichero requirements.txt contiene las librerías Python necesarias para ejecutar la aplicación. Este fichero se obtiene con el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ pip freeze > requirements.txt
 ```
 
 </div>### uwsgi.ini
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```ini
 [uwsgi]
 http = 0.0.0.0:$(UWSGI_HTTP_PORT)
 module = $(UWSGI_APP):app
@@ -147,8 +142,7 @@ Para facilitar la construcción de la imagen con el servidor uWSGI que contiene 
 
 ### docker-compose.yml
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```yaml
 version: '3.8'
 
 services:
@@ -202,8 +196,7 @@ Para que nuestro contenedor NGINX funcione como proxy inverso y balanceador de c
 
 ### nginx.conf
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```nginx
 user nginx;
 worker_processes 1;
 
@@ -256,22 +249,19 @@ http {
 
 Para construir la imagen del servidor uWSGI, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose build
 ```
 
 </div>Una vez construida la imagen del servidor uWSGI, ya podemos arrancar ambos servidores uWSGI y el servidor NGINX mediante el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose up -d
 ```
 
 </div>Para verificar que todos los contenedores están arrancados, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose ps
 NAME                IMAGE                         COMMAND                  SERVICE             CREATED             STATUS              PORTS
 nginx               nginx:latest                  "/docker-entrypoint.…"   nginx               2 minutes ago       Up 2 minutes        0.0.0.0:80->80/tcp
@@ -281,8 +271,7 @@ uwsgi-2             aprenderdevops/uwsgi:latest   "uwsgi --ini /uwsgi.…"   uws
 
 </div>Para ver los logs, utilizamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose logs -f
 ```
 

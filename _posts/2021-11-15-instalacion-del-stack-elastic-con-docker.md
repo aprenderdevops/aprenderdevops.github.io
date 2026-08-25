@@ -56,8 +56,7 @@ El registro Docker de Elastic (<https://www.docker.elastic.co/>) contiene las im
 
 Para la instalación del stack Elastic, vamos a utilizar docker-compose. A continuación, podemos ver el fichero docker-compose.yml que utilizaremos.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```yaml
 version: '3.8'
 
 services:
@@ -144,15 +143,13 @@ Podéis consultar esto con más detalle en el siguiente enlace de la documentaci
 
 Para arrancar los contenedores del stack Elastic, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose up -d
 ```
 
 </div>Para verificar que los tres contenedores se están ejecutando correctamente, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose ps
 NAME                COMMAND                  SERVICE             STATUS              PORTS
 elasticsearch       "/bin/tini -- /usr/l…"   elasticsearch       running             0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp
@@ -162,8 +159,7 @@ logstash            "/usr/local/bin/dock…"   logstash            running      
 
 </div>Para visualizar los logs, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker-compose logs -f
 ```
 
@@ -179,8 +175,7 @@ Abrimos un navegador y accedemos a http://localhost:9200. Deberíamos ver una sa
 
 A continuación, se muestra el fichero <meta charset="utf-8"></meta>[logstash/pipeline/logstash.conf](https://github.com/aprenderdevops/docker-elastic/blob/main/logstash/pipeline/logstash.conf), que contiene la <meta charset="utf-8"></meta>configuración del pipeline que <meta charset="utf-8"></meta>nos va a permitir comprobar el funcionamiento <meta charset="utf-8"></meta>de Logstash.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```ruby
 input {
   heartbeat {
     message => "ok"
@@ -210,8 +205,7 @@ En la sección output se configura la salida de los eventos para su envío al í
 
 Para comprobar que los eventos de tipo heartbeat se están generando cada 5 segundos y se están enviando a la salida estándar, se puede ejecutar el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ docker logs logstash -n21 -f
 {
           "host" => "18ff4068ddbb",
@@ -240,8 +234,7 @@ $ docker logs logstash -n21 -f
 
 Para comprobar que los eventos también se están enviado a Elasticsearch, se puede ejecutar el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```
-
+<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
 $ curl -XGET "http://localhost:9200/heartbeat/_search?pretty=true" -H 'Content-Type: application/json' -d'{"size": 1}'
 {
   "took" : 693,
