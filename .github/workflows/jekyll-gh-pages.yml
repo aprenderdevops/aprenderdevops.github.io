@@ -34,11 +34,13 @@ jobs:
           bundler-cache: true
       - name: Generate tag pages
         run: bundle exec ruby scripts/generar_tags.rb
-      - name: Verify tag pages are up to date
+      - name: Generate archive pagination pages
+        run: bundle exec ruby scripts/generar_paginas_archivo.rb
+      - name: Verify tag and archive pagination pages are up to date
         run: |
-          if [ -n "$(git status --porcelain -- tag/)" ]; then
-            echo "::error::Tag pages (tag/*.md) are out of sync with the tags in _posts/. Run 'bundle exec ruby scripts/generar_tags.rb' locally, review the diff, and commit the changes in tag/ before pushing."
-            git status --porcelain -- tag/
+          if [ -n "$(git status --porcelain -- tag/ category/)" ]; then
+            echo "::error::Tag pages (tag/*.md) or archive pagination pages (tag/*-pageN.md, category/*-pageN.md) are out of sync with _posts/. Run 'bundle exec ruby scripts/generar_tags.rb' and 'bundle exec ruby scripts/generar_paginas_archivo.rb' locally, review the diff, and commit the changes in tag/ and category/ before pushing."
+            git status --porcelain -- tag/ category/
             exit 1
           fi
       - name: Setup Pages

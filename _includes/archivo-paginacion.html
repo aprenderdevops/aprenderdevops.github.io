@@ -1,0 +1,28 @@
+{% comment %}
+  Paginación para archivos de categoría y etiqueta.
+  Uso: {% include archivo-paginacion.html pagina_actual=pagina_actual total_paginas=total_paginas base=base %}
+  base es la ruta sin barra final ni "/page/N/", p. ej. "/category/cloud" o "/tag/docker".
+{% endcomment %}
+{% if include.total_paginas > 1 %}
+<div class="archive-pagination pagination">
+	<ul>
+		{% if include.pagina_actual > 1 %}
+		{% assign pagina_anterior = include.pagina_actual | minus: 1 %}
+		{% if pagina_anterior == 1 %}{% assign url_anterior = include.base | append: "/" %}{% else %}{% assign url_anterior = include.base | append: "/page/" | append: pagina_anterior | append: "/" %}{% endif %}
+		<li class="pagination-previous"><a href="{{ url_anterior }}">&#171; Página anterior</a></li>
+		{% endif %}
+		{% for pagina in (1..include.total_paginas) %}
+		{% if pagina == 1 %}{% assign url_pagina = include.base | append: "/" %}{% else %}{% assign url_pagina = include.base | append: "/page/" | append: pagina | append: "/" %}{% endif %}
+		{% if pagina == include.pagina_actual %}
+		<li class="active"><a href="{{ url_pagina }}" aria-current="page">{{ pagina }}</a></li>
+		{% else %}
+		<li><a href="{{ url_pagina }}">{{ pagina }}</a></li>
+		{% endif %}
+		{% endfor %}
+		{% if include.pagina_actual < include.total_paginas %}
+		{% assign pagina_siguiente = include.pagina_actual | plus: 1 %}
+		<li class="pagination-next"><a href="{{ include.base | append: '/page/' | append: pagina_siguiente | append: '/' }}">Página siguiente &#187;</a></li>
+		{% endif %}
+	</ul>
+</div>
+{% endif %}

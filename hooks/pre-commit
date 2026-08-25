@@ -4,14 +4,16 @@
 #
 #   git config core.hooksPath hooks
 #
-# Regenera tag/*.md antes de cualquier commit que toque _posts/, y añade los
-# cambios resultantes al propio commit, para que la entrada y sus páginas de
-# etiqueta viajen siempre juntas en un solo commit.
+# Regenera tag/*.md y las páginas de paginación de categoría/etiqueta
+# (tag/*-pageN.md, category/*-pageN.md) antes de cualquier commit que toque
+# _posts/, y añade los cambios resultantes al propio commit, para que la
+# entrada y sus páginas de archivo viajen siempre juntas en un solo commit.
 #
 # Es una comodidad, no una garantía: si este hook no está activado (por
 # ejemplo, en un clon nuevo donde aún no se ha ejecutado el comando de
-# arriba), el paso "Verificar que las páginas de etiqueta están al día" del
-# workflow de despliegue lo detecta igualmente y bloquea el despliegue.
+# arriba), el paso "Verificar que las páginas de etiqueta y paginación están
+# al día" del workflow de despliegue lo detecta igualmente y bloquea el
+# despliegue.
 
 # No hacer nada si el commit no toca _posts/.
 if ! git diff --cached --name-only | grep -q '^_posts/'; then
@@ -19,13 +21,14 @@ if ! git diff --cached --name-only | grep -q '^_posts/'; then
 fi
 
 if ! command -v bundle >/dev/null 2>&1; then
-	echo "aviso (hook pre-commit): bundler no está instalado, no se han podido regenerar las páginas de etiqueta" >&2
+	echo "aviso (hook pre-commit): bundler no está instalado, no se han podido regenerar las páginas de etiqueta ni las de paginación" >&2
 	exit 0
 fi
 
 bundle exec ruby scripts/generar_tags.rb
+bundle exec ruby scripts/generar_paginas_archivo.rb
 
-if [ -n "$(git status --porcelain -- tag/)" ]; then
-	git add -A -- tag/
-	echo "hook pre-commit: páginas de etiqueta regeneradas y añadidas a este commit"
+if [ -n "$(git status --porcelain -- tag/ category/)" ]; then
+	git add -A -- tag/ category/
+	echo "hook pre-commit: páginas de etiqueta y de paginación regeneradas y añadidas a este commit"
 fi
