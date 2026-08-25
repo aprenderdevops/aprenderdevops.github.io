@@ -33,11 +33,11 @@ Si queréis subir vuestras imágenes Docker a Docker Hub, lo primero que tenéis
 
 Una vez que dispongáis de una cuenta, subir una imagen Docker a Docker Hub es tan sencillo como ejecutar un comando docker push similar al siguiente:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker push aprenderdevops/jenkins:latest
 ```
 
-</div>En este caso estoy subiendo la imagen con Jenkins que construí en la entrada [Instalación de Jenkins con Docker](https://aprenderdevops.com/instalacion-de-jenkins-con-docker/).
+En este caso estoy subiendo la imagen con Jenkins que construí en la entrada [Instalación de Jenkins con Docker](https://aprenderdevops.com/instalacion-de-jenkins-con-docker/).
 
 En vuestro caso, sólo tendréis que cambiar el nombre de la cuenta aprenderdevops por el de vuestra cuenta de Docker Hub, y el nombre del repositorio de imágenes, en este caso jenkins, por el nombre que le queráis dar a vuestra imagen.
 
@@ -45,7 +45,7 @@ Además, tenéis la opción de indicar la etiqueta o tag de la imagen. En el eje
 
 Una vez subida la imagen Docker a Docker Hub, esta estará disponible públicamente y cualquiera podrá descargarla para que esté disponible localmente. Para ello, únicamente tendrá que ejecutar un comando docker pull similar al siguiente:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker pull aprenderdevops/jenkins
 Using default tag: latest
 latest: Pulling from aprenderdevops/jenkins
@@ -53,7 +53,7 @@ Digest: sha256:8627663a01a0ca10a2067244e8cdf9baae91538570f6c5b4e578e06ca0a7cc41
 Status: Image is up to date for aprenderdevops/jenkins:latest
 ```
 
-</div>## Configurar builds automatizados en Docker Hub
+## Configurar builds automatizados en Docker Hub
 
 Si accedéis al sitio web de Docker Hub, encontraréis vuestro repositorio en una URL similar a <https://hub.docker.com/r/aprenderdevops/jenkins/>.
 

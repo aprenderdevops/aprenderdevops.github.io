@@ -59,7 +59,7 @@ Para facilitar la instalación de SonarQube en contenedores Docker vamos a utili
 
 A continuación, podéis ver el fichero docker-compose.yml que describe cómo se van a ejecutar los contenedores.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```yaml
+```yaml
 version: '2'
 
 services:
@@ -103,13 +103,13 @@ volumes:
   postgresql_data:
 ```
 
-</div>Para arrancar los contenedores ejecutamos el siguiente comando:
+Para arrancar los contenedores ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose up -d
 ```
 
-</div>## Acceso a la consola de SonarQube
+## Acceso a la consola de SonarQube
 
 Una vez arrancados los contenedores, abrimos un navegador web y accedemos a http://localhost:9000 para acceder a la consola de SonarQube.
 

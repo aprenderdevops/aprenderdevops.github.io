@@ -66,7 +66,7 @@ Para añadir un nuevo plugin Jenkins a la imagen Docker únicamente tenemos que 
 
 Una vez realizada la modificación en el código de nuestro proyecto, hacemos un commit de los cambios de nuestro código y le asignamos un tag. Esto lo hacemos ejecutando los comandos que detallo a continuación:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ git add plugins.txt
 $ git commit -m "Se añade el plugin blueocean en plugins.txt"
 [master c38387a] Se añade el plugin blueocean en plugins.txt
@@ -74,11 +74,11 @@ $ git commit -m "Se añade el plugin blueocean en plugins.txt"
 $ git tag 1.5 -m "Versión 1.5. Se añade el plugin Blue Ocean."
 ```
 
-</div>En mi caso he etiquetado esta versión como la 1.5.
+En mi caso he etiquetado esta versión como la 1.5.
 
 Podemos obtener información sobre un determinado tag ejecutando un comando git show como el siguiente:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ git show 1.5
 tag 1.5
 Tagger: aprenderdevops <jarfernandez@aprenderdevops.com>
@@ -113,9 +113,9 @@ index 30ac56c..1b3b57c 100644
 +workflow-support
 ```
 
-</div>Por último, para actualizar estos cambios en GitHub ejecutamos el siguiente comando:
+Por último, para actualizar estos cambios en GitHub ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ git push origin master --tag
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
@@ -129,7 +129,7 @@ To https://github.com/aprenderdevops/docker-jenkins.git
 
 ```
 
-</div>En el repositorio de GitHub tendremos una nueva release etiquetada con el tag 1.5.
+En el repositorio de GitHub tendremos una nueva release etiquetada con el tag 1.5.
 
 <figure class="aligncenter"><a href="http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-3.png"><img src="http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-3-1024x456.png" alt="Configuración de builds automatizados en Docker Hub utilizando tags de Git"></a></figure>Estos cambios en GitHub desencadenarán dos builds en Docker Hub, uno etiquetado como latest y otro como 1.5.
 
@@ -139,27 +139,27 @@ To https://github.com/aprenderdevops/docker-jenkins.git
 
 Para comprobar que todo ha ido bien, descargamos a local la nueva imagen Docker construida. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker pull aprenderdevops/jenkins
 ```
 
-</div>Una vez descargada la nueva imagen Docker, arrancamos el contenedor ejecutando el siguiente comando:
+Una vez descargada la nueva imagen Docker, arrancamos el contenedor ejecutando el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose up -d
 Creating volume "dockerjenkins_jenkins_home" with default driver
 Creating dockerjenkins_master_1 ... done
 ```
 
-</div>Una vez arrancado el contenedor, abrimos un navegador y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
+Una vez arrancado el contenedor, abrimos un navegador y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
 
 Para obtener la contraseña del usuario admin de Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker exec -it dockerjenkins_master_1 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-</div>Si todo ha ido bien, en la parte izquierda de la consola de Jenkins se mostrará el icono de acceso a la interfaz Blue Ocean.
+Si todo ha ido bien, en la parte izquierda de la consola de Jenkins se mostrará el icono de acceso a la interfaz Blue Ocean.
 
 <figure class="aligncenter"><a href="http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-6.png"><img src="http://aprenderdevops.com/wp-content/uploads/2018/02/builds-dockerhub-tags-6-1024x625.png" alt="Configuración de builds automatizados en Docker Hub utilizando tags de Git"></a></figure>## Código fuente del laboratorio
 

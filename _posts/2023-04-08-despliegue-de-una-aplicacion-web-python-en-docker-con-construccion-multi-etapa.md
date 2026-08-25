@@ -49,7 +49,7 @@ Como ya vimos en la entrada [Despliegue de una aplicación web Python en Docker]
 
 ### Dockerfile multi-stage
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```docker
+```docker
 # Version de Python (solo mayor y menor)
 ARG _PYTHON_VERSION=3.11
 
@@ -102,21 +102,21 @@ VOLUME /WebApp
 ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 ```
 
-</div>### Instrucciones
+### Instrucciones
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker build -t aprenderdevops/uwsgi .
 ```
 
-</div>Para arrancar el contenedor ejecutamos el siguiente comando:
+Para arrancar el contenedor ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker run -d -p 8080:8000 --restart unless-stopped -v $(pwd)/WebApp:/WebApp aprenderdevops/uwsgi
 ```
 
-</div>Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080. Nos mostrará una página web con el texto “Hello, World!”.
+Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080. Nos mostrará una página web con el texto “Hello, World!”.
 
 También podéis ver la ejecución de estas instrucciones en el siguiente vídeo:
 

@@ -56,7 +56,7 @@ El registro Docker de Elastic (<https://www.docker.elastic.co/>) contiene las im
 
 Para la instalación del stack Elastic, vamos a utilizar docker-compose. A continuación, podemos ver el fichero docker-compose.yml que utilizaremos.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```yaml
+```yaml
 version: '3.8'
 
 services:
@@ -106,7 +106,7 @@ services:
       - elasticsearch
 ```
 
-</div>A continuación, paso a explicar el código de este fichero docker-compose:
+A continuación, paso a explicar el código de este fichero docker-compose:
 
 - De las líneas 4 a la 22 se describe el servicio elasticsearch.
 - En la línea 5 se indica el repositorio y el tag de la imagen de Elasticsearch que se va a utilizar. Como se puede ver, vamos a obtener las imágenes del registro Docker de Elastic.
@@ -143,13 +143,13 @@ Podéis consultar esto con más detalle en el siguiente enlace de la documentaci
 
 Para arrancar los contenedores del stack Elastic, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose up -d
 ```
 
-</div>Para verificar que los tres contenedores se están ejecutando correctamente, ejecutamos el siguiente comando:
+Para verificar que los tres contenedores se están ejecutando correctamente, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose ps
 NAME                COMMAND                  SERVICE             STATUS              PORTS
 elasticsearch       "/bin/tini -- /usr/l…"   elasticsearch       running             0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp
@@ -157,13 +157,13 @@ kibana              "/bin/tini -- /usr/l…"   kibana              running      
 logstash            "/usr/local/bin/dock…"   logstash            running             0.0.0.0:5000->5000/tcp, 0.0.0.0:5044->5044/tcp, 0.0.0.0:9600->9600/tcp
 ```
 
-</div>Para visualizar los logs, ejecutamos el siguiente comando:
+Para visualizar los logs, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose logs -f
 ```
 
-</div>## Comprobación del funcionamiento del stack Elastic
+## Comprobación del funcionamiento del stack Elastic
 
 Una vez arrancados los tres contenedores del stack Elastic, para comprobar si el stack está funcionando correctamente, podemos seguir las instrucciones que se detallan a continuación.
 
@@ -175,7 +175,7 @@ Abrimos un navegador y accedemos a http://localhost:9200. Deberíamos ver una sa
 
 A continuación, se muestra el fichero [logstash/pipeline/logstash.conf](https://github.com/aprenderdevops/docker-elastic/blob/main/logstash/pipeline/logstash.conf), que contiene la configuración del pipeline que nos va a permitir comprobar el funcionamiento de Logstash.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```ruby
+```ruby
 input {
   heartbeat {
     message => "ok"
@@ -197,7 +197,7 @@ output {
 }
 ```
 
-</div>Con esta configuración se genera cada 5 segundos un evento mediante el [plugin heartbeat](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-heartbeat.html).
+Con esta configuración se genera cada 5 segundos un evento mediante el [plugin heartbeat](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-heartbeat.html).
 
 En este ejemplo no hemos incluido ningún [filter](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html), por lo que, con los eventos generados no se va a realizar ningún tipo de procesamiento o transformación.
 
@@ -205,7 +205,7 @@ En la sección output se configura la salida de los eventos para su envío al í
 
 Para comprobar que los eventos de tipo heartbeat se están generando cada 5 segundos y se están enviando a la salida estándar, se puede ejecutar el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker logs logstash -n21 -f
 {
           "host" => "18ff4068ddbb",
@@ -230,11 +230,11 @@ $ docker logs logstash -n21 -f
 }
 ```
 
-</div>La salida de este comando deberá mostrar cada 5 segundos un nuevo evento de tipo heartbeat.
+La salida de este comando deberá mostrar cada 5 segundos un nuevo evento de tipo heartbeat.
 
 Para comprobar que los eventos también se están enviado a Elasticsearch, se puede ejecutar el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ curl -XGET "http://localhost:9200/heartbeat/_search?pretty=true" -H 'Content-Type: application/json' -d'{"size": 1}'
 {
   "took" : 693,
@@ -270,7 +270,7 @@ $ curl -XGET "http://localhost:9200/heartbeat/_search?pretty=true" -H 'Content-T
 }
 ```
 
-</div>La salida de este comando deberá mostrar el primer evento de tipo heartbeat generado.
+La salida de este comando deberá mostrar el primer evento de tipo heartbeat generado.
 
 ### Kibana
 

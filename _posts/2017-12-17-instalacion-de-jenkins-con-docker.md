@@ -56,33 +56,33 @@ A continuación, pasamos a ver los pasos necesarios para instalar Jenkins con un
 
 Lo más sencillo para probar Jenkins es ejecutar un contenedor a partir de la imagen jenkins/jenkins. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins
 ```
 
-</div>Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
+Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
 
 Nos solicitará una contraseña que podemos encontrar en la salida de la ejecución del contenedor anterior o bien ejecutando los siguientes comandos:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker ps | grep jenkins/jenkins
 f687f96f8810    jenkins/jenkins  "/bin/tini -- /usr..." 15 minutes ago   Up 15 minutes   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp determined_ptolemy
 ```
 
-</div>Con este comando obtenemos el identificador del contenedor (la primera cadena de caracteres). Para obtener la contraseña ejecutamos el siguiente comando sustituyendo el identificador del contenedor por el que obtengáis en la salida del comando anterior:
+Con este comando obtenemos el identificador del contenedor (la primera cadena de caracteres). Para obtener la contraseña ejecutamos el siguiente comando sustituyendo el identificador del contenedor por el que obtengáis en la salida del comando anterior:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker exec -it f687f96f8810 cat /var/jenkins_home/secrets/initialAdminPassword
 0aa34fc2581d415d81f9c4e2ee98213c
 ```
 
-</div>Si queremos que los cambios que realicemos en la configuración de Jenkins persistan incluso tras la destrucción del contenedor, debemos arrancar el contenedor con un volumen. Para ello, ejecutamos el siguiente comando:
+Si queremos que los cambios que realicemos en la configuración de Jenkins persistan incluso tras la destrucción del contenedor, debemos arrancar el contenedor con un volumen. Para ello, ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins
 ```
 
-</div>Esta instalación que acabamos de probar no incluye utilidades como [Maven](https://maven.apache.org/), que permite compilar y empaquetar aplicaciones Java, o cualquiera de los muchos plugins Jenkins disponibles. Cualquier paquete de sistema operativo, utilidad o plugin adicional que necesitemos, tendremos que añadirlo al contenedor manualmente tras ser arrancado. El problema de esto es que, si queremos replicar esta instalación en otra máquina, lo que hemos realizado manualmente no podremos reutilizarlo y deberemos repetir los mismos pasos de configuración manual en la nueva instalación.
+Esta instalación que acabamos de probar no incluye utilidades como [Maven](https://maven.apache.org/), que permite compilar y empaquetar aplicaciones Java, o cualquiera de los muchos plugins Jenkins disponibles. Cualquier paquete de sistema operativo, utilidad o plugin adicional que necesitemos, tendremos que añadirlo al contenedor manualmente tras ser arrancado. El problema de esto es que, si queremos replicar esta instalación en otra máquina, lo que hemos realizado manualmente no podremos reutilizarlo y deberemos repetir los mismos pasos de configuración manual en la nueva instalación.
 
 La solución para no tener que repetir las configuraciones manuales en cada nueva instalación pasa por construir una imagen Docker con Jenkins a medida, con todo lo que necesitemos, y partiendo de la imagen base jenkins/jenkins que hemos utilizado para probar Jenkins.
 
@@ -92,7 +92,7 @@ La solución para no tener que repetir las configuraciones manuales en cada nuev
 
 Lo primero que tenemos que hacer para construir nuestra propia imagen con Jenkins es escribir el fichero Dockerfile que contendrá las instrucciones para construir nuestra imagen.
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```docker
+```docker
 FROM jenkins/jenkins
 
 USER root
@@ -103,7 +103,7 @@ COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 ```
 
-</div>A continuación, explico para que sirven las distintas líneas del fichero Dockerfile:
+A continuación, explico para que sirven las distintas líneas del fichero Dockerfile:
 
 - En la línea 1 se indica la imagen base de la que se parte para construir la nueva imagen.
 - En la línea 4 instalamos Maven utilizando comandos apt-get. Estos comandos deben ejecutarse como usuario root. Indicamos que el usuario de ejecución es root en la línea 3.
@@ -115,7 +115,7 @@ RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 Como ya he indicado, en el fichero plugins.txt incluimos cada plugin que queremos que se instale en Jenkins. Se incluye un plugin por línea, tal y como puede verse a continuación:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```text
+```text
 ace-editor
 analysis-core
 ant
@@ -190,11 +190,11 @@ workflow-step-api
 workflow-support
 ```
 
-</div>### docker-compose.yml
+### docker-compose.yml
 
 Para facilitar la construcción de la imagen y la ejecución del contenedor Docker escribimos un fichero docker-compose.yml:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```yaml
+```yaml
 version: '2'
 services:
   master:
@@ -212,7 +212,7 @@ volumes:
   jenkins_home:
 ```
 
-</div>Indico a continuación para que sirven las líneas más relevantes de este fichero:
+Indico a continuación para que sirven las líneas más relevantes de este fichero:
 
 - En la línea 4 indicamos el directorio sobre el que se va a construir la imagen. En este caso, el mismo directorio en el que se encuentra el fichero docker-compose.yml.
 - En la línea 5 indicamos el nombre de nuestra imagen. Podéis cambiar aprenderdevops/jenkins:latest por el nombre que le queráis dar a vuestra propia imagen con Jenkins.
@@ -225,24 +225,24 @@ volumes:
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose build
 ```
 
-</div>Para arrancar el contenedor con Jenkins ejecutamos el siguiente comando:
+Para arrancar el contenedor con Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker-compose up -d
 ```
 
-</div>Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
+Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080 para entrar en la consola de administración de Jenkins.
 
 Para obtener la contraseña del usuario admin de Jenkins ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker exec -it dockerjenkins_master_1 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-</div>## Código fuente del laboratorio
+## Código fuente del laboratorio
 
 Podéis descargar o clonar de GitHub el código fuente completo de este laboratorio de <https://github.com/aprenderdevops/docker-jenkins>.

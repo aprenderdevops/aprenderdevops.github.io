@@ -26,7 +26,7 @@ El funcionamiento sería exactamente el mismo si la aplicación fuera más compl
 
 ### webapp.py
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```python
+```python
 from flask import Flask
 
 app = Flask(__name__)
@@ -41,7 +41,7 @@ if __name__ == "__main___":
     app.run()
 ```
 
-</div>## ¿Qué es WSGI?
+## ¿Qué es WSGI?
 
 WSGI (Web Server Gateway Interface) es un protocolo para que los servidores web como Nginx, lighttpd o Cherokee envíen peticiones a aplicaciones web desarrolladas en Python.
 
@@ -63,7 +63,7 @@ Como ya hemos comentado, para poder ejecutar nuestra aplicación web Python nece
 
 ### Dockerfile
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```docker
+```docker
 FROM python:3.7.3
 LABEL maintainer="Jose Arturo Fernandez <jarfernandez@aprenderdevops.com>"
 
@@ -99,7 +99,7 @@ VOLUME /WebApp
 ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 ```
 
-</div>A continuación, explico las distintas líneas del Dockerfile:
+A continuación, explico las distintas líneas del Dockerfile:
 
 - En la línea 1 se indica la imagen base de la que se parte para construir la nueva imagen. En este caso partimos de la imagen oficial de Python en su versión 3.7.3.
 - En la línea 5 se copia el fichero requirements.txt que contiene las librerías Python necesarias para ejecutar la aplicación.
@@ -117,7 +117,7 @@ ENTRYPOINT ["uwsgi", "--ini", "/uwsgi.ini"]
 
 ### requirements.txt
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```text
+```text
 Click==7.0
 Flask==1.1.1
 itsdangerous==1.1.0
@@ -126,21 +126,21 @@ MarkupSafe==1.1.1
 Werkzeug==0.15.5
 ```
 
-</div>El fichero requirements.txt contiene las librerías Python necesarias para ejecutar la aplicación. Este fichero se obtiene con el siguiente comando:
+El fichero requirements.txt contiene las librerías Python necesarias para ejecutar la aplicación. Este fichero se obtiene con el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ pip freeze > requirements.txt
 ```
 
-</div>### uwsgi.ini
+### uwsgi.ini
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```ini
+```ini
 [uwsgi]
 http = 0.0.0.0:$(UWSGI_HTTP_PORT)
 module = $(UWSGI_APP):app
 ```
 
-</div>El fichero uwsgi.ini contiene la configuración del servidor uWSGI.
+El fichero uwsgi.ini contiene la configuración del servidor uWSGI.
 
 En la línea 2 se indica la dirección IP y el puerto en el que el servidor uWSGI escuchará peticiones HTTP. La dirección establecida a 0.0.0.0 hará que se escuche por todas las interfaces de red.
 
@@ -148,11 +148,11 @@ En el caso del puerto, se especifica que se obtenga el valor de la variable de e
 
 El valor por defecto del puerto se puede cambiar al construir la imagen con docker build especificando otro valor. Por ejemplo, si queremos que el valor por defecto del puerto para la imagen sea el 9000, ejecutaremos el siguiente comando para construir la imagen:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker build --build-arg UWSGI_HTTP_PORT=9000 -t aprenderdevops/uwsgi .
 ```
 
-</div>Esta configuración se define en las líneas 9 y 10 del Dockerfile.
+Esta configuración se define en las líneas 9 y 10 del Dockerfile.
 
 En la línea 3 se especifica el módulo a ejecutar por el servidor uWSGI. Se especifica que se obtenga el valor de la variable de entorno UWSGI\_APP. Si esta variable no se establece en la ejecución del contenedor con el flag –env o -e se le asignará el valor por defecto (webapp).
 
@@ -164,17 +164,17 @@ La utilización de variables de entorno que se pasan al fichero de configuració
 
 Para construir la imagen ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker build -t aprenderdevops/uwsgi .
 ```
 
-</div>Para arrancar el contenedor ejecutamos el siguiente comando:
+Para arrancar el contenedor ejecutamos el siguiente comando:
 
-<div class="wp-block-syntaxhighlighter-code" markdown="1">```console
+```console
 $ docker run -d -p 8080:8000 --restart unless-stopped -v $(pwd)/WebApp:/WebApp aprenderdevops/uwsgi
 ```
 
-</div>Con el flag -p indicamos que se rediriga el puerto 8000 del contenedor (puerto por defecto en el que escucha el servidor uWSGI) al puerto 8080 de nuestra máquina. Si el puerto 8080 estuviera ocupado por otro proceso habría que cambiarlo por otro.
+Con el flag -p indicamos que se rediriga el puerto 8000 del contenedor (puerto por defecto en el que escucha el servidor uWSGI) al puerto 8080 de nuestra máquina. Si el puerto 8080 estuviera ocupado por otro proceso habría que cambiarlo por otro.
 
 Una vez arrancado el contenedor, abrimos un navegador web y accedemos a http://localhost:8080. Nos debería abrir una página web con el texto “Hello World!”.
 
