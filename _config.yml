@@ -1,6 +1,6 @@
 url: 'https://aprenderdevops.com'
 name: aprenderDevOps
-description: 'Para profesionales TI interesados en DevOps'
+description: 'Aprendiendo DevOps'
 
 # Misma propiedad GA4 que ya usa el WordPress original, para no perder
 # continuidad del histórico de datos entre ambos sitios.
