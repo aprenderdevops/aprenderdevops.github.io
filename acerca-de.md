@@ -9,12 +9,12 @@ permalink: /acerca-de/
 
 Soy Arturo Fernández y este es mi blog [aprenderDevOps](/). ¡Bienvenido!
 
-Si has llegado hasta aquí es porque coincides conmigo en que el presente y el futuro de los que nos dedicamos a las Tecnologías de la Información pasa por adoptar una nueva forma de trabajar que se conoce como DevOps.
+Si has llegado hasta aquí, probablemente compartas conmigo la idea de que la forma de desarrollar, desplegar y operar software ha cambiado profundamente en los últimos años. DevOps no es solo un conjunto de herramientas, sino una forma de trabajar que combina cultura, automatización y buenas prácticas para crear y entregar software de manera más eficiente y fiable.
 
-DevOps me interesa desde hace tiempo, especialmente todo lo que tiene que ver con el uso de herramientas como Docker, Ansible, Terraform, Kubernetes y muchas otras.
+Me interesa especialmente la parte más práctica y técnica de DevOps: herramientas y tecnologías como Docker, Ansible, Terraform, Kubernetes y muchas otras que forman parte del día a día de los equipos de ingeniería y plataformas.
 
-El objetivo de este blog es proporcionar contenido práctico y útil que permita a los profesionales de las Tecnologías de la Información interesados en DevOps ponerse al día y aprender sobre herramientas y buenas prácticas DevOps.
+El objetivo de este blog es compartir contenidos prácticos, técnicos y útiles que ayuden a otros profesionales de Tecnologías de la Información a aprender sobre DevOps, profundizar en estas tecnologías y aplicar lo aprendido en su trabajo.
 
-En este blog escribo para profesionales de las Tecnologías de la Información con perfil técnico que quieran tener más oportunidades de trabajo y optar a mejores remuneraciones adquiriendo conocimientos sobre DevOps.
+Escribo principalmente para profesionales con un perfil técnico que quieran ampliar sus conocimientos, mantenerse actualizados y mejorar sus oportunidades profesionales.
 
-Si no quieres perderte ninguno de los contenidos de este blog, lo único que tienes que hacer es suscribirte a mi lista de correo.
+Creo que aprender constantemente y mantenerse al día con las tecnologías que están transformando nuestra profesión es una de las mejores formas de avanzar.
