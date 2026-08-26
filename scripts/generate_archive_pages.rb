@@ -9,8 +9,8 @@
 # La página 1 de cada archivo no la toca este script: la de cada categoría
 # vive en category/<slug>.md (escrita a mano, con título y descripción — ver
 # categorias.md), la de cada etiqueta en tag/<slug>.md (generada por
-# generar_tags.rb) y la de cada autor en author/<slug>.md (generada por
-# generar_autores.rb). Este script solo gestiona las páginas 2, 3... que no
+# generate_tags.rb) y la de cada autor en author/<slug>.md (generada por
+# generate_authors.rb). Este script solo gestiona las páginas 2, 3... que no
 # tienen contenido propio, sincronizando category/, tag/ y author/ con el
 # estado actual de las entradas: crea las páginas que faltan y borra las que
 # sobran (porque una entrada se borró, se le quitó la categoría/etiqueta/
@@ -18,12 +18,12 @@
 # `paginate`).
 #
 # El slug de cada etiqueta y de cada autor se calcula igual que en
-# generar_tags.rb / generar_autores.rb (Jekyll::Utils.slugify, mode:
-# 'latin'); el de cada categoría se lee de _data/categorias.yml, la misma
+# generate_tags.rb / generate_authors.rb (Jekyll::Utils.slugify, mode:
+# 'latin'); el de cada categoría se lee de _data/categories.yml, la misma
 # fuente que usa _layouts/category.html.
 #
 # Uso:
-#   bundle exec ruby scripts/generar_paginas_archivo.rb
+#   bundle exec ruby scripts/generate_archive_pages.rb
 #
 # Ver CLAUDE.md para el flujo completo (cuándo ejecutarlo, verificación en
 # CI, hook de pre-commit).
@@ -37,7 +37,7 @@ POSTS_DIR = File.join(REPO_ROOT, '_posts')
 CATEGORY_DIR = File.join(REPO_ROOT, 'category')
 TAG_DIR = File.join(REPO_ROOT, 'tag')
 AUTHOR_DIR = File.join(REPO_ROOT, 'author')
-CATEGORIAS_YAML = File.join(REPO_ROOT, '_data', 'categorias.yml')
+CATEGORIAS_YAML = File.join(REPO_ROOT, '_data', 'categories.yml')
 CONFIG_YAML = File.join(REPO_ROOT, '_config.yml')
 
 def front_matter_de(post_path)
@@ -116,7 +116,7 @@ nombre_de_slug_categoria = categorias_yaml.to_h { |c| [c['slug'], c['nombre']] }
 conteo_categorias.each_key do |categoria|
   next if slug_de_categoria.key?(categoria)
 
-  warn "aviso: la categoría #{categoria.inspect} no está en _data/categorias.yml, se omite su paginación"
+  warn "aviso: la categoría #{categoria.inspect} no está en _data/categories.yml, se omite su paginación"
 end
 
 # Todas las categorías conocidas, no solo las usadas: así una categoría que

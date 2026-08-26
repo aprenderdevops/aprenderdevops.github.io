@@ -9,7 +9,7 @@
 				<a href="{{ item.url }}"{% if es_actual %} aria-current="page"{% endif %}><span>{{ item.titulo }}</span></a>
 				{% if item.categorias %}
 				<ul class="sub-menu">
-					{% for categoria in site.data.categorias %}
+					{% for categoria in site.data.categories %}
 					<li class="menu-item"><a href="/category/{{ categoria.slug }}/"><span>{{ categoria.nombre }}</span></a></li>
 					{% endfor %}
 				</ul>

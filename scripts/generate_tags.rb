@@ -11,12 +11,12 @@
 # _includes/entry-footer.html usa para enlazar cada etiqueta — así el slug
 # que genera este script y el que calcula la plantilla en tiempo de build
 # siempre coinciden, sin necesidad de mantener un mapeo a mano (a diferencia
-# de _data/categorias.yml, que sí lo necesita por la excepción de
+# de _data/categories.yml, que sí lo necesita por la excepción de
 # "integracion-entrega-continua"; las etiquetas no tienen ninguna excepción
 # de ese tipo).
 #
 # Uso:
-#   bundle exec ruby scripts/generar_tags.rb
+#   bundle exec ruby scripts/generate_tags.rb
 #
 # Ver CLAUDE.md para el flujo completo (cuándo ejecutarlo, verificación en
 # CI, hook de pre-commit).

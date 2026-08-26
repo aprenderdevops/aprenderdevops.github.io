@@ -7,14 +7,14 @@
 # autores que ya no firman ninguna entrada.
 #
 # El slug de cada autor se calcula con Jekyll::Utils.slugify(mode: 'latin'),
-# el mismo método que usa scripts/generar_tags.rb para las etiquetas — así
+# el mismo método que usa scripts/generate_tags.rb para las etiquetas — así
 # el nombre queda siempre en minúsculas y sin tildes (p. ej. "Arturo" ->
 # "arturo"), y el slug que genera este script y el que enlaza
 # _includes/entry-header.html (con el filtro Liquid `slugify: 'latin'')
 # siempre coinciden, sin necesidad de un mapeo a mano.
 #
 # Uso:
-#   bundle exec ruby scripts/generar_autores.rb
+#   bundle exec ruby scripts/generate_authors.rb
 #
 # Ver CLAUDE.md para el flujo completo (cuándo ejecutarlo, verificación en
 # CI, hook de pre-commit).

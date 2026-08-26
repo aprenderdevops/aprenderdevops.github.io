@@ -22,9 +22,9 @@ Automático vía GitHub Actions (`.github/workflows/jekyll-gh-pages.yml`) en cad
 Tras añadir, editar o borrar una entrada, regenera las páginas de archivo derivadas antes de commitear:
 
 ```bash
-bundle exec ruby scripts/generar_tags.rb
-bundle exec ruby scripts/generar_autores.rb
-bundle exec ruby scripts/generar_paginas_archivo.rb
+bundle exec ruby scripts/generate_tags.rb
+bundle exec ruby scripts/generate_authors.rb
+bundle exec ruby scripts/generate_archive_pages.rb
 ```
 
 Hay un hook de pre-commit que lo automatiza (`git config core.hooksPath hooks`), y CI lo verifica igualmente.

@@ -1,5 +1,5 @@
 # Estructura del menú principal (se reutiliza, sin submenús, para el pie).
-# Los slugs de "Categorías" no están aquí: ese submenú se genera desde _data/categorias.yml
+# Los slugs de "Categorías" no están aquí: ese submenú se genera desde _data/categories.yml
 # (detalle 1 del plan), marcando el elemento con "categorias: true".
 - titulo: Inicio
   url: /

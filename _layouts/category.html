@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign entradas_categoria = site.categories[page.category_name] %}
-{% assign categoria_info = site.data.categorias | where: "nombre", page.category_name | first %}
+{% assign categoria_info = site.data.categories | where: "nombre", page.category_name | first %}
 {% assign base = "/category/" | append: categoria_info.slug %}
 {% assign pagina_actual = page.pagina | default: 1 %}
 {% assign por_pagina = site.paginate %}
@@ -16,4 +16,4 @@ layout: default
 {% for post in entradas_pagina %}
 {% include entry.html post=post %}
 {% endfor %}
-{% include archivo-paginacion.html pagina_actual=pagina_actual total_paginas=total_paginas base=base %}
+{% include archive-pagination.html pagina_actual=pagina_actual total_paginas=total_paginas base=base %}

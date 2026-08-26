@@ -26,9 +26,9 @@ if ! command -v bundle >/dev/null 2>&1; then
 	exit 0
 fi
 
-bundle exec ruby scripts/generar_tags.rb
-bundle exec ruby scripts/generar_autores.rb
-bundle exec ruby scripts/generar_paginas_archivo.rb
+bundle exec ruby scripts/generate_tags.rb
+bundle exec ruby scripts/generate_authors.rb
+bundle exec ruby scripts/generate_archive_pages.rb
 
 if [ -n "$(git status --porcelain -- tag/ author/ category/)" ]; then
 	git add -A -- tag/ author/ category/

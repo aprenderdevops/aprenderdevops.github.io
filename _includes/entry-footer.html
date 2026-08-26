@@ -1,14 +1,14 @@
 {% comment %}
   Uso: {% include entry-footer.html post=post %}
-  Categorías enlazadas vía _data/categorias.yml (detalle 1). Etiquetas enlazadas a
-  tag/<slug>/, generado por scripts/generar_tags.rb — el slug se calcula aquí con el
+  Categorías enlazadas vía _data/categories.yml (detalle 1). Etiquetas enlazadas a
+  tag/<slug>/, generado por scripts/generate_tags.rb — el slug se calcula aquí con el
   mismo slugify: 'latin' que usa ese script, así que siempre coinciden (ver CLAUDE.md).
 {% endcomment %}
 <footer class="entry-footer">
 	<p class="entry-meta">
 		<span class="entry-categories">Publicado en:
 			{% for cat in include.post.categories %}
-			{% assign categoria_datos = site.data.categorias | where: "nombre", cat | first %}
+			{% assign categoria_datos = site.data.categories | where: "nombre", cat | first %}
 			<a href="/category/{{ categoria_datos.slug }}/" rel="category tag">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
 			{% endfor %}
 		</span>
