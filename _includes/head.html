@@ -9,6 +9,18 @@
 {% endif %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 
+{% assign titulo_og = page.title | strip_html | default: site.name %}
+{% assign descripcion_og = page.title | strip_html | default: site.description %}
+{% assign imagen_og = page.image | default: "/assets/images/2017/10/aprenderDevOps360x140.png" %}
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:title" content="{{ titulo_og }}">
+<meta property="og:description" content="{{ descripcion_og }}">
+<meta property="og:image" content="{{ imagen_og | absolute_url }}">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,600">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 

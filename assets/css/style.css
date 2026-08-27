@@ -2369,3 +2369,41 @@ body.custom-background {
 .entry-content .highlight .o {
   color: #f92672;
 }
+
+.entry-share {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	margin-bottom: 24px;
+	padding-top: 24px;
+	border-top: 1px dotted #ddd;
+}
+
+.entry-share-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background-color: #222;
+	color: #fff;
+	font: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.entry-share .entry-share-link:hover,
+.entry-share .entry-share-link:focus {
+	background-color: #eb232f;
+	color: #fff;
+}
+
+.entry-share-link svg {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
