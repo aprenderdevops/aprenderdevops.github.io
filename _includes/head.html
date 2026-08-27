@@ -16,8 +16,8 @@
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:title" content="{{ titulo_og }}">
-<meta property="og:description" content="{{ descripcion_og }}">
+<meta property="og:title" content="{{ titulo_og | escape }}">
+<meta property="og:description" content="{{ descripcion_og | escape }}">
 <meta property="og:image" content="{{ imagen_og | absolute_url }}">
 <meta name="twitter:card" content="summary_large_image">
 
