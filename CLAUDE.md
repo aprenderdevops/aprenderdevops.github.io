@@ -108,7 +108,8 @@ secreto.
   honeypot, el filtro antispam propio de Formspree y el *Restrict to Domain* (ver debajo).
 - El plan gratuito de Formspree permite **50 envíos al mes**; cada prueba (en local o en
   producción) consume uno.
-- El formulario en Formspree tiene *Restrict to Domain* fijado a `aprenderdevops.github.io`.
+- *Restrict to Domain* es un ajuste **del proyecto** en Formspree (Settings del proyecto que
+  agrupa el formulario, no del formulario en sí), fijado a `aprenderdevops.github.io`.
   **Al pasar el sitio al dominio propio hay que cambiarlo a `aprenderdevops.com`** (sin
   `www`: un dominio sin subdominio en Formspree casa con todos sus subdominios, pero uno con
   `www` solo casa con `www`).
