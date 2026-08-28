@@ -78,6 +78,44 @@ A diferencia de WordPress (donde el nombre del autor bajo cada entrada no enlaza
 - **`_includes/head.html`** incluye las meta tags Open Graph (`og:title`, `og:description`, `og:image`...) y `twitter:card`, sin las cuales LinkedIn/X/WhatsApp no pueden construir la tarjeta de previsualización al compartir un enlace. Reutilizan el mismo título/descripción que ya se calculaban para `<title>`/`<meta name="description">`. `og:image` usa `page.image` (la imagen destacada de la entrada) si existe, o si no `assets/images/2017/10/aprenderDevOps360x140.png` (el logo del sitio) como imagen genérica para la portada, páginas estáticas y archivos de categoría/etiqueta/autor.
 - **Ojo al probar el botón de compartir en local:** `bundle exec jekyll serve` sobrescribe `site.url` a `http://localhost:4000` (o el puerto que se use) aunque `_config.yml` tenga `https://aprenderdevops.com` — es un comportamiento de Jekyll para que `absolute_url`/`relative_url` funcionen en local. El enlace que genera `_includes/share.html` usa ese `site.url`, así que en local apunta a una URL que LinkedIn no puede alcanzar desde fuera y no mostrará ninguna previsualización; con `jekyll build` (el build real de producción, ver más arriba) `site.url` sí es el dominio público.
 
+## Formulario de contacto
+
+`contacto.md` incluye `_includes/contact-form.html`, un formulario de contacto servido por
+[Formspree](https://formspree.io/): GitHub Pages es estático y no puede procesar un `POST`,
+así que el envío se delega en un servicio externo, igual que el WordPress original lo
+delegaba en el plugin Contact Form 7. El ID del formulario vive en `formspree_form_id`
+(`_config.yml`) — es un dato público, acaba en el HTML servido de todas formas, no un
+secreto.
+
+- **Ficheros implicados:** `_includes/contact-form.html` (marcado del formulario, incluido
+  desde `contacto.md`), `assets/js/contact-form.js` (envía el formulario por `fetch` y
+  escribe el resultado en `.entry-form-response` sin recargar la página, degradando a un
+  `POST` normal sin JS), las reglas al final de `assets/css/style.css` (honeypot oculto y
+  caja del mensaje de respuesta) y `formspree_form_id` en `_config.yml`.
+- El marcado replica a propósito el que generaba Contact Form 7
+  (`<p><label> Texto<br><input></label></p>`), para que el aspecto salga íntegro del CSS de
+  Generate Pro que ya está en el repo (`input, select, textarea`, `input[type="submit"]`)
+  sin añadir estilos nuevos más allá del honeypot y la caja de respuesta.
+- **Campos especiales de Formspree** usados en el `<form>`: `name`, `email` (alimenta el
+  Reply-To de la notificación), `subject` (el Subject del correo — campo libre, como en el
+  original), `message` (el cuerpo), `_gotcha` (honeypot: un campo oculto por CSS que un bot
+  rellena y un visitante no; si llega relleno, Formspree descarta el envío en silencio) y
+  `_language` (pone en español la página de "gracias" de Formspree, a la que va a parar el
+  visitante si no hay JS).
+- **reCAPTCHA está desactivado a propósito** en la configuración del formulario en
+  Formspree: es un script de terceros con cookies, el mismo criterio que descartó los
+  widgets de terceros en los botones de compartir. La protección contra spam la cubren el
+  honeypot, el filtro antispam propio de Formspree y el *Restrict to Domain* (ver debajo).
+- El plan gratuito de Formspree permite **50 envíos al mes**; cada prueba (en local o en
+  producción) consume uno.
+- El formulario en Formspree tiene *Restrict to Domain* fijado a `aprenderdevops.github.io`.
+  **Al pasar el sitio al dominio propio hay que cambiarlo a `aprenderdevops.com`** (sin
+  `www`: un dominio sin subdominio en Formspree casa con todos sus subdominios, pero uno con
+  `www` solo casa con `www`).
+- **Ojo al probar en local:** los envíos desde `localhost:4000` son envíos reales, consumen
+  cuota del plan gratuito y llegan al correo configurado de verdad — y si *Restrict to
+  Domain* está activo, se van a la bandeja de spam de Formspree en vez de llegar.
+
 ## Paginación de los archivos de categoría, etiqueta y autor
 
 `jekyll-paginate` (el único plugin de paginación permitido por GitHub Pages) solo sabe paginar la portada (`index.html`, sobre `site.posts`); no tiene forma de paginar `site.categories[...]`, `site.tags[...]` ni una lista filtrada por autor por separado. Para que un archivo de categoría, etiqueta o autor con más de `paginate` entradas (3, ver `_config.yml`) no las muestre todas en una sola página, la paginación de `category/`, `tag/` y `author/` se resuelve a mano, con páginas físicas adicionales generadas por script:

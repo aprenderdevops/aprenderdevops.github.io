@@ -1,0 +1,47 @@
+{% comment %}
+  Formulario de contacto de /contacto/, servido por Formspree
+  (https://formspree.io/): GitHub Pages es estático y no puede procesar un
+  POST, así que el envío se delega en un servicio externo, igual que el
+  WordPress original lo delegaba en el plugin Contact Form 7.
+
+  El marcado replica el que generaba Contact Form 7 (<p><label> Texto<br>
+  <input></label></p>) para que el aspecto salga íntegro del CSS de Generate
+  Pro que ya está en assets/css/style.css (las reglas `input, select,
+  textarea` e `input[type="submit"]`), sin necesidad de estilos nuevos.
+
+  Los nombres de los campos son los "campos especiales" que Formspree
+  reconoce: `email` alimenta la cabecera Reply-To de la notificación,
+  `subject` su Subject y `message` el cuerpo. Ojo: `subject` es un campo
+  libre (como en el original), así que quien envía el formulario controla el
+  asunto del correo que llega.
+
+  `_gotcha` es el honeypot de Formspree: un campo que el CSS oculta, que un
+  visitante nunca rellena y un bot sí; si llega relleno, Formspree descarta
+  el envío en silencio. `_language` pone en español la página de "gracias"
+  de Formspree, que es a donde va a parar el visitante si no hay JS.
+
+  assets/js/contact-form.js envía el formulario por fetch y escribe el
+  resultado en .entry-form-response sin salir de la página, como hacía
+  Contact Form 7. Sin JS, el navegador hace el POST normal.
+{% endcomment %}
+<form class="entry-form" action="https://formspree.io/f/{{ site.formspree_form_id }}" method="post">
+	<p><label> Nombre (requerido)<br>
+	<input type="text" name="name" size="40" maxlength="400" required></label>
+	</p>
+	<p><label> Correo electrónico (requerido)<br>
+	<input type="email" name="email" size="40" maxlength="400" required></label>
+	</p>
+	<p><label> Asunto<br>
+	<input type="text" name="subject" size="40" maxlength="400"></label>
+	</p>
+	<p><label> Mensaje<br>
+	<textarea name="message" cols="40" rows="10" maxlength="2000"></textarea></label>
+	</p>
+	<p class="entry-form-gotcha"><label>No rellenes este campo<br>
+	<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+	</p>
+	<input type="hidden" name="_language" value="es">
+	<p><input type="submit" value="Enviar"></p>
+	<div class="entry-form-response" role="status" aria-live="polite" hidden></div>
+</form>
+<script src="{{ '/assets/js/contact-form.js' | relative_url }}" defer></script>

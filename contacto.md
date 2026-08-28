@@ -8,3 +8,5 @@ permalink: /contacto/
 ---
 
 Aquí puedes ponerte en contacto conmigo para enviarme tus consultas, darme tu opinión sobre los contenidos del blog o sugerirme temas sobre los que te gustaría que escribiera.
+
+{% include contact-form.html %}
