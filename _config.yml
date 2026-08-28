@@ -6,6 +6,10 @@ description: 'Aprendiendo DevOps'
 # continuidad del histórico de datos entre ambos sitios.
 google_analytics_id: G-BCNKP12W4P
 
+# ID del formulario de Formspree que atiende /contacto/: el tramo final de la URL
+# https://formspree.io/f/<id> que da el panel de Formspree en la sección Integration.
+formspree_form_id: 'mbgjjrok'
+
 # El tema vive en este repo (_layouts/_includes/assets), no en un gem. Hay que
 # declararlo vacío explícitamente porque el gem github-pages, si no, activa
 # jekyll-theme-primer por defecto, cuyo assets/css/style.scss se genera en la

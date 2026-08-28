@@ -2407,3 +2407,24 @@ body.custom-background {
 	height: 18px;
 	fill: currentColor;
 }
+
+/* Formulario de contacto (_includes/contact-form.html): ver CLAUDE.md §
+   «Formulario de contacto». */
+
+.entry-form-gotcha {
+	display: none;
+}
+
+.entry-form-response {
+	margin: 2em 0.5em 1em;
+	padding: 0.2em 1em;
+	border: 2px solid #00a0d2;
+}
+
+.entry-form-response-ok {
+	border-color: #46b450;
+}
+
+.entry-form-response-error {
+	border-color: #dc3232;
+}
