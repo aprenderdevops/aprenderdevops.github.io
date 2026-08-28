@@ -22,6 +22,41 @@ bundle exec jekyll serve --livereload
 
 y abre `http://localhost:4000`. Revisa de vez en cuando que `Gemfile.lock` siga igualando la versión de `github-pages` que usa producción (`bundle update github-pages`), ya que GitHub Pages actualiza esa versión de forma independiente a este repo.
 
+### Dominio y DNS
+
+Desde el 2026-08-28 el sitio se sirve en `aprenderdevops.com` (dominio propio en GitHub
+Pages, con *Enforce HTTPS*), y ya no en `aprenderdevops.github.io` — que ahora redirige con
+un 301 al dominio propio, igual que `www.aprenderdevops.com`. Antes de esa fecha,
+`aprenderdevops.com` lo servía el WordPress original alojado en Webempresa.
+
+- **La zona DNS autoritativa vive en Cloudflare, no en Webempresa.** Los nameservers del
+  dominio son `kay`/`will.ns.cloudflare.com`; el registrador es Tecnocrática
+  (`registrador.es`). Webempresa ofrece una integración con Cloudflare desde su panel, pero
+  **editar la zona en el panel de Webempresa no surte ningún efecto** — hay que hacerlo en
+  `dash.cloudflare.com`. Para comprobar quién manda: `dig +short aprenderdevops.com NS`.
+- **Ningún registro de la zona debe estar en modo *Proxied*** (nube naranja); todos en
+  *DNS only* (nube gris). En Proxied, Cloudflare llega a GitHub Pages sin el SNI correcto y
+  GitHub devuelve su 404 «Site not found», además de impedir que se emita el certificado.
+  Y como Cloudflare solo proxya los puertos 80/443, los registros de correo y de paneles
+  (`mail`, `webmail`, `cpanel`, `whm`, `webdisk`, `cpcalendars`, `cpcontacts`, `ftp`) quedan
+  con IMAP/POP3/SMTP y demás puertos filtrados. Comprobación: `dig +short <nombre>` debe
+  devolver la IP real (`213.158.84.65` para los de Webempresa, `185.199.108-111.153` para el
+  apex), nunca `188.114.x.x` (que son IPs de borde de Cloudflare).
+- **`CNAME` como fichero en el repo no hace falta** y no lo hay: con `build_type: workflow`
+  el dominio propio vive en la configuración de Pages y sobrevive a los despliegues.
+- **El CDN de GitHub Pages cachea por `Vary: Accept-Encoding`,** así que `curl` a secas (que
+  no manda `Accept-Encoding`) puede devolver 200 mientras todos los navegadores reciben una
+  respuesta rancia distinta. Para reproducir lo que ve un navegador hay que pedir la
+  variante comprimida, y mirar `age`/`x-cache`:
+
+  ```bash
+  curl -sSI -H "Accept-Encoding: gzip" https://aprenderdevops.com/
+  ```
+
+  Un 404 a nivel de host se cachea ignorando ruta y query string, así que no se esquiva con
+  un `?cachebuster=`. Se purga lanzando un despliegue nuevo (el workflow admite
+  `workflow_dispatch`): `gh workflow run "Deploy Jekyll with GitHub Pages dependencies preinstalled" --ref main`.
+
 ## Estructura del contenido
 
 - `_posts/*.md` — entradas del blog, con el patrón de nombre `YYYY-MM-DD-slug.md` (estándar de Jekyll). El contenido se migró desde un sitio WordPress anterior — el front matter aún conserva un artefacto de WordPress (`id`, el ID numérico del post/página en la base de datos original) junto a los campos de Jekyll que realmente importan:
@@ -109,10 +144,11 @@ secreto.
 - El plan gratuito de Formspree permite **50 envíos al mes**; cada prueba (en local o en
   producción) consume uno.
 - *Restrict to Domain* es un ajuste **del proyecto** en Formspree (Settings del proyecto que
-  agrupa el formulario, no del formulario en sí), fijado a `aprenderdevops.github.io`.
-  **Al pasar el sitio al dominio propio hay que cambiarlo a `aprenderdevops.com`** (sin
-  `www`: un dominio sin subdominio en Formspree casa con todos sus subdominios, pero uno con
-  `www` solo casa con `www`).
+  agrupa el formulario, no del formulario en sí), fijado a `aprenderdevops.com` (sin `www`:
+  un dominio sin subdominio en Formspree casa con todos sus subdominios, pero uno con `www`
+  solo casa con `www`). Estuvo fijado a `aprenderdevops.github.io` hasta el paso al dominio
+  propio; ojo si vuelve a cambiar el dominio, porque con el valor desfasado Formspree
+  rechaza todos los envíos legítimos.
 - **Ojo al probar en local:** los envíos desde `localhost:4000` son envíos reales, consumen
   cuota del plan gratuito y llegan al correo configurado de verdad — y si *Restrict to
   Domain* está activo, se van a la bandeja de spam de Formspree en vez de llegar.
